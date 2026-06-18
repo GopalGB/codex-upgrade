@@ -1,8 +1,13 @@
-codex-upgrade 2.1.0
+codex-upgrade 2.2.0
 built 2026-06-18
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
-mode: portable, file-based, zero-MCP
+mode: portable, file-based, zero-MCP (hooks optional)
 changelog:
+  2.2.0 — OPTIONAL Codex hooks (install.sh --with-hooks): UserPromptSubmit
+          frustration-capture (hard-enforces the §F lessons loop + audit log) and
+          SessionStart law-ritual. /prompts:verify (prove-it's-done). tests/smoke.sh
+          (16-check no-network self-test). Hooks are experimental/home-machine only;
+          office-safe default stays behavioral-law.
   2.1.0 — GSD default loop (tiered clarity/PRD approval gates), LESSONS.md wtf-log
           (learn-from-mistakes + frustration capture), reuse-don't-regenerate,
           layered-architecture security defaults. Prompts: /prd, /lesson.

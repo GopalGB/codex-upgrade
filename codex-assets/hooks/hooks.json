@@ -1,0 +1,19 @@
+{
+  "_comment": "Codex Upgrade optional hooks (v0.121 experimental codex_hooks). Enable with `[features] codex_hooks = true` in config.toml — install.sh --with-hooks does this. Commands run via /bin/sh -lc with the event payload on stdin (snake_case keys). Schema is UnderDevelopment in 0.121; treat as unstable.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"$HOME/.codex/hooks/session-start.py\"", "timeout": 10 }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"$HOME/.codex/hooks/frustration-capture.py\"", "timeout": 10 }
+        ]
+      }
+    ]
+  }
+}

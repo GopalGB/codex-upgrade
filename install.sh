@@ -8,6 +8,9 @@
 #   --dry-run      show what would change, do nothing
 #   --link         symlink skills/prompts instead of copying (for development)
 #   --with-config  also merge the safe "office" profile into ~/.codex/config.toml
+#   --with-hooks   install the OPTIONAL Codex hooks (hard-enforce the §F lessons loop).
+#                  Enables the experimental [features] codex_hooks flag. Home machines
+#                  only — not for a locked-down office. See docs/SKILLS.md.
 #   --help
 set -euo pipefail
 
@@ -17,14 +20,15 @@ CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
 TS="$(date +%Y%m%d-%H%M%S)"
 BACKUP="$CODEX_HOME/backups/$TS"
 
-DRY=0; LINK=0; WITH_CONFIG=0
+DRY=0; LINK=0; WITH_CONFIG=0; WITH_HOOKS=0
 for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY=1 ;;
     --link) LINK=1 ;;
     --with-config) WITH_CONFIG=1 ;;
+    --with-hooks) WITH_HOOKS=1 ;;
     --help|-h)
-      sed -n '2,15p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
+      sed -n '2,18p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown flag: $arg (try --help)"; exit 2 ;;
   esac
 done
@@ -40,6 +44,7 @@ say "repo:        $REPO_DIR"
 say "codex home:  $CODEX_HOME"
 say "mode:        $( [ "$LINK" = 1 ] && echo symlink || echo copy )"
 say "config:      $( [ "$WITH_CONFIG" = 1 ] && echo 'merge office profile' || echo 'skip (use --with-config)')"
+say "hooks:       $( [ "$WITH_HOOKS" = 1 ] && echo 'install experimental codex_hooks' || echo 'skip (use --with-hooks)')"
 say ""
 
 [ -d "$ASSETS" ] || { echo "ERROR: $ASSETS not found - run from the repo root."; exit 1; }
@@ -155,6 +160,33 @@ if [ "$WITH_CONFIG" = 1 ]; then
     fi
   else
     say "! config.office.toml not present in this build - skipping"
+  fi
+fi
+
+# --- 7. optional hooks (hard-enforce §F lessons loop; home machines only) ------
+if [ "$WITH_HOOKS" = 1 ]; then
+  if [ ! -d "$ASSETS/hooks" ]; then
+    say "! hooks/ not present in this build - skipping"
+  else
+    # 7a. hook scripts
+    install_dir "$ASSETS/hooks" "$CODEX_HOME/hooks"
+    say "✓ hooks scripts -> $CODEX_HOME/hooks/"
+    # 7b. enable the experimental feature flag (additive, guarded)
+    if [ -f "$CODEX_HOME/config.toml" ] && grep -q 'codex_hooks' "$CODEX_HOME/config.toml"; then
+      say "✓ config.toml already enables codex_hooks (skipped)"
+    else
+      run "printf '\n# CODEX-UPGRADE hooks (experimental v0.121)\n[features]\ncodex_hooks = true\n' >> '$CODEX_HOME/config.toml'"
+      say "✓ config.toml: enabled [features] codex_hooks = true"
+    fi
+    # 7c. hooks.json — create if absent; NEVER clobber an existing one (JSON merge is manual)
+    if [ ! -f "$CODEX_HOME/hooks.json" ]; then
+      if [ "$LINK" = 1 ]; then run "ln -sfn '$ASSETS/hooks/hooks.json' '$CODEX_HOME/hooks.json'"; else run "cp '$ASSETS/hooks/hooks.json' '$CODEX_HOME/hooks.json'"; fi
+      say "✓ hooks.json created"
+    else
+      run "cp '$CODEX_HOME/hooks.json' '$BACKUP/hooks.json'"
+      say "! ~/.codex/hooks.json already exists — NOT clobbered (backed up to $BACKUP/)."
+      say "  Merge the SessionStart + UserPromptSubmit entries from $ASSETS/hooks/hooks.json by hand."
+    fi
   fi
 fi
 

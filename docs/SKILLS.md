@@ -22,7 +22,8 @@ for the full command list.
   signal). You can also drive a tool directly:
   `python3 ~/.codex/skills/<skill>/bin/<script>.py ...`.
 - **Prompts** are explicit: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`,
-  `/prompts:council`, `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`.
+  `/prompts:council`, `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`,
+  `/prompts:verify`.
 - After installing or editing skills/prompts, **restart Codex** (re-scan happens at
   session start only).
 
@@ -32,9 +33,22 @@ what+why → (PRD for software) → your approval → phased plan → your appro
 one phase at a time → verify**. Codex reads `LESSONS.md` before non-trivial work and,
 on any "wtf is this" / correction, logs the mistake so it isn't repeated.
 **Honesty:** the §C clarity/PRD gates and the §F lessons loop are behavioral law the
-model follows — there are **no hooks on the office-safe path**, so they are
-best-effort, not harness-enforced. `/prompts:prd` and `/prompts:lesson` are the manual
-levers. (The kit's GSD law is its own §C; unrelated to any host `gsd:*` skill suite.)
+model follows — best-effort on the office-safe path, not harness-enforced.
+`/prompts:prd`, `/prompts:lesson`, `/prompts:verify` are the manual levers. (The kit's
+GSD law is its own §C; unrelated to any host `gsd:*` skill suite.)
+
+## Optional hooks — deterministic enforcement (home machines)
+`bash install.sh --with-hooks` turns the best-effort loop into a hard one where the
+Codex hooks API is available (verified on v0.121, experimental `codex_hooks`):
+- `~/.codex/hooks/frustration-capture.py` (UserPromptSubmit) — detects "wtf is this"
+  / corrections, appends an audit line to `~/.codex/memory/.frustration-log.jsonl`,
+  and injects a forcing reminder so the model completes the §F lesson + fix.
+- `~/.codex/hooks/session-start.py` (SessionStart) — injects the one-line method
+  ritual + lessons count every session (makes the law sticky).
+Installer enables `[features] codex_hooks = true`, installs the scripts, and creates
+`~/.codex/hooks.json` (it will NOT clobber an existing hooks.json — it backs up and
+tells you to merge). Schema is `UnderDevelopment` in 0.121 — opt-in, treat as unstable.
+Self-test the whole kit (no network): `bash tests/smoke.sh`.
 
 ## Authoring rules (so new skills load on v0.121)
 - Folder name == `name`, lowercase/digits/hyphens, ≤64 chars.

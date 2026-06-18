@@ -33,7 +33,7 @@ falls back to manual links + academic prior-art when absent — never fakes resu
 
 **Slash prompts** (in `codex-assets/prompts/`) — invoked as `/prompts:<name>` in
 Codex: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`, `/prompts:council`,
-`/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`.
+`/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`, `/prompts:verify`.
 
 **Default methodology — the GSD loop (on by default, no command):** for any real
 work Codex runs **clarify what+why → (PRD for software) → your approval → phased plan
@@ -70,7 +70,18 @@ Useful flags:
 bash install.sh --dry-run     # show exactly what would change, do nothing
 bash install.sh --link        # symlink instead of copy (for active development)
 bash install.sh --with-config # also merge the safe "office" profile into config.toml
+bash install.sh --with-hooks  # OPTIONAL: hard-enforce the lessons loop via Codex hooks
 ```
+
+### Optional: hard-enforce the lessons loop (home machines)
+By default the GSD gates + "wtf is this → log a lesson" loop are **behavioral law the
+model follows** (no hooks needed — works in a locked-down office). On a machine where
+you can edit `config.toml`, `--with-hooks` makes the lessons loop **deterministic**:
+it enables Codex's experimental `codex_hooks`, drops a `UserPromptSubmit` hook that
+detects frustration signals (and writes an audit log + injects a forcing reminder),
+and a `SessionStart` ritual that reminds the model of the method every session.
+Experimental + unstable schema — opt-in only; the office-safe default never needs it.
+Verify the whole kit any time: `bash tests/smoke.sh` (16 checks, no network).
 
 ### Or let Codex absorb it for you
 From inside the repo, start `codex` and paste:

@@ -22,9 +22,19 @@ for the full command list.
   signal). You can also drive a tool directly:
   `python3 ~/.codex/skills/<skill>/bin/<script>.py ...`.
 - **Prompts** are explicit: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`,
-  `/prompts:council`, `/prompts:new-skill`.
+  `/prompts:council`, `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`.
 - After installing or editing skills/prompts, **restart Codex** (re-scan happens at
   session start only).
+
+## Default methodology (the GSD loop — AGENTS.md §C/§F)
+On by default, no command needed. Trivial work → just done. Real work → **clarify
+what+why → (PRD for software) → your approval → phased plan → your approval → build
+one phase at a time → verify**. Codex reads `LESSONS.md` before non-trivial work and,
+on any "wtf is this" / correction, logs the mistake so it isn't repeated.
+**Honesty:** the §C clarity/PRD gates and the §F lessons loop are behavioral law the
+model follows — there are **no hooks on the office-safe path**, so they are
+best-effort, not harness-enforced. `/prompts:prd` and `/prompts:lesson` are the manual
+levers. (The kit's GSD law is its own §C; unrelated to any host `gsd:*` skill suite.)
 
 ## Authoring rules (so new skills load on v0.121)
 - Folder name == `name`, lowercase/digits/hyphens, ≤64 chars.

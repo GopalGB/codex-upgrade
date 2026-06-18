@@ -48,6 +48,7 @@ say ""
 run "mkdir -p '$CODEX_HOME/skills' '$CODEX_HOME/prompts' '$CODEX_HOME/memory' '$BACKUP'"
 if [ -f "$CODEX_HOME/AGENTS.md" ]; then run "cp '$CODEX_HOME/AGENTS.md' '$BACKUP/AGENTS.md'"; fi
 if [ -f "$CODEX_HOME/config.toml" ]; then run "cp '$CODEX_HOME/config.toml' '$BACKUP/config.toml'"; fi
+if [ -f "$CODEX_HOME/memory/LESSONS.md" ]; then run "cp '$CODEX_HOME/memory/LESSONS.md' '$BACKUP/LESSONS.md'"; fi
 say "✓ backup -> $BACKUP"
 
 # --- 0b. validate skills BEFORE installing (fail loud on a bad SKILL.md) -------
@@ -129,6 +130,17 @@ EOF
   fi
 else
   say "✓ memory/MEMORY.md exists (untouched)"
+fi
+
+# --- 5b. lessons (the wtf-log) — seed if absent, never clobber -----------------
+if [ ! -f "$CODEX_HOME/memory/LESSONS.md" ]; then
+  if [ "$DRY" = 1 ]; then say "  [dry-run] create memory/LESSONS.md (8 seed lessons)";
+  elif [ -f "$ASSETS/memory/LESSONS.md" ]; then
+    run "cp '$ASSETS/memory/LESSONS.md' '$CODEX_HOME/memory/LESSONS.md'"
+    say "✓ memory/LESSONS.md created (8 seed lessons)"
+  fi
+else
+  say "✓ memory/LESSONS.md exists (untouched)"
 fi
 
 # --- 6. optional config merge -------------------------------------------------

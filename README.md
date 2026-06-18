@@ -33,10 +33,18 @@ falls back to manual links + academic prior-art when absent — never fakes resu
 
 **Slash prompts** (in `codex-assets/prompts/`) — invoked as `/prompts:<name>` in
 Codex: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`, `/prompts:council`,
-`/prompts:new-skill`.
+`/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`.
 
-**Law layer** (`codex-assets/AGENTS.md`): autonomy doctrine, plan→execute→verify,
-self-healing loop, prompt-injection defense, security floor, JARVIS reporting,
+**Default methodology — the GSD loop (on by default, no command):** for any real
+work Codex runs **clarify what+why → (PRD for software) → your approval → phased plan
+→ your approval → build one phase at a time → verify**. Trivial edits/questions skip
+the ceremony. It reads `LESSONS.md` before non-trivial work and, on any "wtf is this"
+/ correction, logs the mistake so it's never repeated. (No hooks on the office path,
+so these gates are behavioral law the model follows — best-effort, not enforced.)
+
+**Law layer** (`codex-assets/AGENTS.md`): the GSD loop + approval gates, autonomy
+doctrine, self-healing loop, reuse-don't-regenerate, lessons/wtf-log, security floor +
+layered-architecture defaults, prompt-injection defense, JARVIS reporting,
 AI-engineering expertise — all written to NOT depend on MCP/hooks.
 
 ---
@@ -44,10 +52,12 @@ AI-engineering expertise — all written to NOT depend on MCP/hooks.
 ## Install (one time, per machine)
 
 ```bash
-git clone <this-repo-url> codex-upgrade   # or copy the folder onto the office box
+git clone https://github.com/GopalGB/codex-upgrade.git
 cd codex-upgrade
 bash install.sh                            # backs up, then ADDS to ~/.codex (never overwrites)
 ```
+(Office box with no GitHub access? Copy the folder over by drive and run the same
+`bash install.sh`.)
 
 `install.sh` is idempotent and additive: it backs up your existing `~/.codex`
 config, replaces only its own marked block in `~/.codex/AGENTS.md` (your other

@@ -1,4 +1,9 @@
-codex-upgrade 2.0.0
-built 2026-06-17
+codex-upgrade 2.1.0
+built 2026-06-18
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP
+changelog:
+  2.1.0 — GSD default loop (tiered clarity/PRD approval gates), LESSONS.md wtf-log
+          (learn-from-mistakes + frustration capture), reuse-don't-regenerate,
+          layered-architecture security defaults. Prompts: /prd, /lesson.
+  2.0.0 — initial kit: 8 expert skills, 5 prompts, AGENTS.md law, no-MCP installer.

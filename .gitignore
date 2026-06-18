@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.venv-*/
+tools-venv/
+
+# tooling caches
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# OS
+.DS_Store
+
+# pre-existing local index snapshot (can embed tokens — never commit)
+codedb.snapshot
+logs/
+
+# local scratch / generated artifacts
+wheels/*.whl
+*.log

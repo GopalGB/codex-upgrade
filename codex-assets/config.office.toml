@@ -1,0 +1,32 @@
+# CODEX-UPGRADE office profile  (validated against config.schema.json @ rust-v0.121.0)
+# Appended by `install.sh --with-config`. Only NEW [profiles.*] tables are added so
+# this can't collide with existing top-level keys. Top-level suggestions are COMMENTED
+# below — uncomment into your config.toml's top section by hand if you want them global.
+#
+# Suggested global top-level (DO NOT paste if you already set these — TOML forbids
+# duplicate keys and Codex will fail to parse):
+#   approval_policy = "untrusted"     # prompt before running anything not trusted
+#   sandbox_mode    = "read-only"     # safest baseline: no writes, no network
+#   web_search      = "disabled"      # offline by default
+#   # model = "<your-entitled-model>" # e.g. set to the model your office account allows
+#   # model_provider = "openai"
+#   # model_reasoning_effort = "low"  # one of: none|minimal|low|medium|high|xhigh
+# NEVER set sandbox_mode = "danger-full-access" on an office machine.
+# 100% MCP-free == simply having NO [mcp_servers.*] blocks (MCP is opt-in; no switch).
+
+# Review / audit: `codex --profile readonly`
+[profiles.readonly]
+sandbox_mode = "read-only"
+approval_policy = "untrusted"
+
+# Active dev: `codex --profile office`  (edits files in the workspace, NO network)
+[profiles.office]
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+
+[profiles.office.sandbox_workspace_write]
+network_access = false   # keep outbound network OFF even while writing files
+
+# To whitelist a specific repo instead of loosening global policy, add (edit path):
+# [projects."/abs/path/to/trusted/repo"]
+# trust_level = "trusted"

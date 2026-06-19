@@ -1,9 +1,9 @@
-# Codex Upgrade — Skill Library Index (288 skills)
+# Codex Upgrade — Skill Library Index (390 skills)
 
-> Codex auto-triggers by description; no command needed. To disable a pack you don't want, `rm -rf ~/.codex/skills/<prefix>-*` (e.g. `retail-*`).
+> Codex auto-triggers by description; no command needed. Disable a pack: `rm -rf ~/.codex/skills/<prefix>-*`.
 
 
-## Core experts — 18
+## Core experts (core-*) — 18
 
 - **agent-builder** — Build PRODUCTION agentic systems — design for the failure path, eval + observe from
 - **claude-review** — Get an independent Claude Opus 4.8 code review of the current git diff — the
@@ -23,6 +23,21 @@
 - **toolbelt** — Reach for FAST CLI tools first instead of writing slow Python/grep one-offs. The
 - **ui-ux-engineer** — Distinctive, production-grade, taste-driven UI/UX engineering — the OPPOSITE of
 - **xlsx-wrangler** — Read, inspect, transform, and export large Excel (.xlsx) files WITHOUT loading
+
+## GSD methodology (gsd-*) (gsd-*) — 12
+
+- **gsd-code-review** — Review the source changed during a phase for bugs, security, and quality — runs claude-review (Opus 4.8) + security-auditor, resolves blockers. Use at the verify gate.
+- **gsd-debug** — Systematic debugging with persistent state across context resets — hypothesis-driven, one change at a time, logged to .planning/debug/. Use for any non-trivial bug.
+- **gsd-discuss** — Gather phase context through adaptive questioning before planning — surface assumptions, constraints, and unknowns. Use between spec and plan.
+- **gsd-execute-phase** — Execute a phase plan ONE step at a time with checkpoints — change, run the exact tests, self-heal on red, mark done. Parallelize independent steps via swarm. Use after plan approval.
+- **gsd-extract-learnings** — After a phase, extract decisions, lessons, patterns, and surprises into LESSONS.md / .planning so the next phase compounds. Use after ship.
+- **gsd-map-codebase** — Map an unfamiliar codebase before changing it — parallel reader passes (swarm) into .planning/codebase/ docs: architecture, key modules, conventions, risks. Use when joining a repo.
+- **gsd-new-project** — Initialize a project the GSD way — deep context gathering into .planning/PROJECT.md (goal, users, constraints, stack, success criteria) before any build.
+- **gsd-plan-phase** — Create a detailed, verifiable phase plan in .planning/PLAN.md — 3-7 phased steps, each with a success criterion, files affected, out-of-scope, security step. Use before executing.
+- **gsd-progress** — The situational GSD command — 'where am I, what's next?' Reads .planning/ state and advises the next GSD step (or dispatches a freeform intent to the right phase). Use anytime you're unsure.
+- **gsd-ship** — Ship after verification — branch, commit (Conventional Commits), run the security/secret gate, open a PR, prep for merge. Use only after verify + review pass.
+- **gsd-spec** — Clarify WHAT a phase delivers, with ambiguity scoring, into .planning/SPEC.md — the contract before planning. Use before plan-phase on non-trivial work.
+- **gsd-verify** — Goal-backward verification + conversational UAT — re-read the SPEC criteria, run the FULL suite, confirm each criterion actually passes, get Claude Opus review. Use before ship.
 
 ## Algorithms & DSA (algo-*) — 26
 
@@ -139,6 +154,111 @@
 - **sde-solid-principles** — Apply SOLID to keep OO code flexible - single responsibility, open-closed, Liskov, interface segregation, dependency inversion.
 - **sde-system-design-method** — Drive any system-design problem through the canonical 5-step flow: requirements, estimation, API, data model, then scale.
 - **sde-testing-strategy** — Build the test pyramid - fast unit, focused integration, few e2e - plus TDD red-green-refactor and what to mock at boundaries.
+
+## Power BI (pbi-*) — 23
+
+- **pbi-bookmarks** — Use bookmarks + selection pane + buttons to build navigation, toggles, show/hide states, and guided storytelling
+- **pbi-calculate-filter-context** — Master CALCULATE to modify filter context — the single most important DAX function; filter args, removing/keeping filters, context transition
+- **pbi-calculation-groups** — Eliminate measure sprawl with calculation groups — apply YTD/PY/YoY/currency logic to any base measure via SELECTEDMEASURE
+- **pbi-composite-models** — Combine Import + DirectQuery + DirectQuery-over-PBI-datasets in one composite model; manage storage modes and limited relationships
+- **pbi-conditional-formatting** — Apply data-driven colors, data bars, icons, and dynamic formatting via rules or DAX measures on tables, matrices, and visuals
+- **pbi-dataflows** — Centralize reusable ETL with Power BI/Fabric dataflows (Gen2) so multiple datasets share cleaned, certified tables
+- **pbi-deployment-pipelines** — Promote content across Dev/Test/Prod workspaces with deployment pipelines, parameter rules, and workspace governance
+- **pbi-drillthrough-tooltips** — Build drillthrough pages and report-page tooltips to give detail-on-demand without cluttering the main report
+- **pbi-gateways-refresh** — Configure on-prem data gateways, scheduled and incremental refresh, and diagnose refresh failures and timeouts
+- **pbi-iterators-sumx-averagex** — Row-by-row aggregation with SUMX/AVERAGEX/MAXX when you need per-row math before aggregating, plus context-transition gotchas
+- **pbi-kpis-cards-visual-calcs** — Build KPI cards, the KPI visual, and visual calculations (GA May 2026) for running totals/moving averages without new model measures
+- **pbi-measures-vs-calc-columns** — Decide measure vs calculated column vs visual calculation; when each stores/computes and why measures win for aggregation
+- **pbi-parameters-whatif** — Build what-if scenario analysis with numeric range parameters and field/calculation parameters for dynamic measure/axis switching
+- **pbi-performance-vertipaq-aggregations** — Tune model speed: reduce VertiPaq cardinality, use aggregation tables, and profile DAX with Performance Analyzer/DAX Studio
+- **pbi-power-query-m-transforms** — Shape and clean data in Power Query M before load — unpivot, merge, type, custom columns, and folding-aware transforms
+- **pbi-relationships-cardinality** — Configure relationship cardinality, cross-filter direction, and active/inactive relationships; fix many-to-many and ambiguity
+- **pbi-report-design-ux** — Lay out reports for clarity and speed — grid alignment, visual hierarchy, theme JSON, consistent formatting, and fewer-faster visuals
+- **pbi-row-level-security** — Implement RLS with DAX filter roles, dynamic USERPRINCIPALNAME security, and propagation across the star schema
+- **pbi-star-schema-modeling** — Design a star schema (facts + conformed dimensions) instead of a flat table or snowflake — the foundation of fast, correct Power BI models
+- **pbi-storage-modes** — Choose Import vs DirectQuery vs Direct Lake (2026: on-SQL vs on-OneLake) by data size, freshness, and capacity
+- **pbi-time-intelligence** — YTD/QTD/MTD, prior-period and YoY comparisons with TOTALYTD, SAMEPERIODLASTYEAR, DATEADD — requires a marked date table
+- **pbi-variables-var-return** — Use VAR/RETURN to make DAX readable, avoid recomputation, and dodge the context-capture trap that bites filter-modifying measures
+- **pbi-visual-selection** — Pick the right chart for the analytical question — comparison, trend, composition, distribution, relationship — and avoid misleading visuals
+
+## Power Automate (pa-*) — 20
+
+- **pa-ai-builder** — AI Builder in flows: prebuilt + custom document processing, GPT prompts, extract/classify text, sentiment, and credit consumption
+- **pa-apply-to-each-loops** — Apply to each, Do until, concurrency control, nested loops, and why loops destroy flow performance (batch instead)
+- **pa-approvals** — Approvals connector: Start and wait, approval types (first-to-respond/everyone/custom), parallel approvers, reminders, escalation
+- **pa-child-flows** — Reusable child flows via Run a Child Flow, request/respond trigger, passing typed inputs/outputs, solution requirement, sync limits
+- **pa-cloud-flow-basics** — Cloud flow anatomy: one trigger -> sequential actions, dynamic content, Peek code/JSON, test and run history, the maker portal
+- **pa-conditions-switch** — Condition (if/else branches), nested conditions vs Switch action, multi-criteria AND/OR rows, expression-mode conditions
+- **pa-connectors-custom** — Standard vs premium connectors, connection references, and building custom connectors from OpenAPI/Postman with auth + policies
+- **pa-dataverse-triggers-actions** — Dataverse connector: When a row is added/modified/deleted (scope/filter), List/Get/Add/Update rows, FetchXML, $expand, @odata.bind
+- **pa-desktop-flows-rpa** — Power Automate Desktop RPA: attended vs unattended, machine/gateway, UI/web automation selectors, run from a cloud flow, error handling
+- **pa-error-handling-runafter** — Configure run after (failed/skipped/timed out), Scope try/catch/finally pattern, result() for error details, Terminate with status
+- **pa-expressions-wdl** — Workflow Definition Language: concat/if/coalesce/formatDateTime, triggerBody()/items(), null-safe ?[] access, type coercion
+- **pa-filter-array-odata** — Filter array action (in-memory) vs source-side OData $filter, Select for projection, and pushing filters to the data source
+- **pa-http-rest-action** — HTTP premium action for REST: method/headers/body/auth, Parse JSON the response, pagination, and the HTTP-trigger webhook
+- **pa-outlook-teams-flows** — Outlook (send/receive/shared mailbox) + Teams (post message, adaptive cards, wait for response) automation patterns
+- **pa-pagination** — Pagination settings to fetch beyond default 100/256 limits, threshold caps, skip-token loops, and HTTP @odata.nextLink paging
+- **pa-retry-policy-timeout** — Per-action retry policy (default/none/fixed/exponential), action timeout (ISO 8601 duration), and handling 429 throttling
+- **pa-sharepoint-flows** — SharePoint flows: item/file triggers, Get items with OData Filter Query, Update item, Send an HTTP request to SharePoint REST, attachments
+- **pa-solutions-alm** — Solutions + ALM: environments (dev/test/prod), managed vs unmanaged, connection references, environment variables, pac CLI, pipelines
+- **pa-trigger-types** — Automated vs instant vs scheduled triggers, trigger conditions, Split On, concurrency, and the infinite-loop trap
+- **pa-variables-vs-compose** — Initialize/Set/Increment/Append variables vs Compose for immutable values; when each wins, scope rules, array-build pitfalls
+
+## Copilot Studio (copilot-*) — 15
+
+- **copilot-actions-flows-connectors** — Add tools/actions to an agent: call a Power Automate flow, a connector action, a prompt, or an MCP server; wire inputs/outputs and handle auth.
+- **copilot-agents-overview** — Decide agent type and orchestration mode when starting a new Copilot Studio agent: classic vs generative, declarative M365 vs standalone, autonomous vs conversational.
+- **copilot-analytics-transcripts** — Measure agent performance and debug real conversations using the Analytics dashboards, session details, conversation transcripts, and Dataverse/Application Insights export.
+- **copilot-authentication-variables** — Configure agent authentication (no auth / Entra ID / manual OAuth) and manage variable scope (topic, global, system) including passing Entra user identity to flows.
+- **copilot-channels-teams-web-m365** — Publish an agent to channels: Microsoft Teams, custom website embed, M365 Copilot, SharePoint, Power Pages, Direct Line API, and the right channel for each audience.
+- **copilot-content-moderation-guardrails** — Configure content moderation, response controls, and guardrails at agent/topic/prompt level to balance answer coverage against safety and off-topic responses.
+- **copilot-conversational-nodes** — Build conversation flow with Message, Question, and Condition nodes including adaptive cards, multiple-choice options, and branching logic in the topic canvas.
+- **copilot-entities-slot-filling** — Extract structured values from user input with prebuilt/custom entities and slot-fill required question variables; stop the bot re-asking for info already given.
+- **copilot-generative-answers-knowledge** — Ground an agent on enterprise data with generative answers over SharePoint, Dataverse, files, public websites, and connectors; fix 'no answer found' grounding gaps.
+- **copilot-generative-vs-classic-orchestration** — Choose and configure classic (topic-routing) vs generative (LLM-planned) orchestration, and migrate an existing classic agent to generative without breaking flows.
+- **copilot-human-handoff** — Hand off a conversation to a live human agent with full context via Escalate topic + engagement hub (D365 Omnichannel / Genesys / contact center), or notify in Teams.
+- **copilot-m365-declarative-agents** — Build M365 Copilot declarative agents and extensions: instructions, knowledge, capabilities, API/MCP plugins, and ship via Agents Toolkit or Copilot Studio.
+- **copilot-publishing-alm** — Publish, version, and move agents across environments using solutions, connection references, and environment variables for proper dev/test/prod ALM.
+- **copilot-testing-test-pane** — Test an agent in the Test pane: trace topic/tool routing, inspect variable values, watch generative orchestration steps, and debug why a turn went wrong.
+- **copilot-topics-trigger-phrases** — Author classic topics and write trigger phrases / topic descriptions so the orchestrator routes the right conversation path; fix topics that never fire.
+
+## Power Apps (papps-*) — 15
+
+- **papps-canvas-vs-model-driven** — Choose canvas vs model-driven (vs custom pages): pixel UI on any connector vs Dataverse-metadata-driven apps; when each wins and the hybrid.
+- **papps-collections-and-variables** — State: global vars (Set), context vars (UpdateContext), collections (ClearCollect/Collect/Patch), scope rules, and the OnStart-vs-named-formula choice.
+- **papps-components-libraries** — Reusable components & component libraries: custom + behavior input/output properties, instance vs definition, and sharing across apps for consistency.
+- **papps-data-sources-connectors** — Connecting data: standard vs premium connectors, SharePoint/SQL/Dataverse/Excel, implicit vs explicit connections, connection references for ALM.
+- **papps-dataverse-tables-relationships** — Dataverse data modeling: tables, columns/types, primary name, choice/lookup columns, 1:N/N:N relationships, and querying related rows in Power Fx.
+- **papps-delegation** — THE #1 gotcha: delegation — which functions/operators each data source pushes to the server vs evaluates locally on the 500/2000-row cap, per source.
+- **papps-galleries-and-forms** — Galleries (Items, ThisItem, Selected, templates) and Edit/Display/View forms (DataSource, Item, Update, SubmitForm); when to use which.
+- **papps-model-driven-forms-views** — Model-driven UI: main forms (tabs/sections/columns), views (columns, filter, sort), and business rules for no-code validation/show-hide logic.
+- **papps-offline-caching** — Offline canvas apps: SaveData/LoadData local cache, Connection.Connected detection, queue-and-sync writes, and the new offline-first capabilities/limits.
+- **papps-patch-and-submission** — Writing data with Patch: create vs update, Defaults(), patching relationships/lookups & choices, ForAll+Patch bulk writes, error handling on writes.
+- **papps-performance-optimization** — Canvas perf: cut OnStart, Concurrent parallel loads, delegate at source, minimize control count & nested galleries, ClearCollect caching, monitor profiling.
+- **papps-power-fx-basics** — Power Fx essentials: declarative formulas, behavior vs property formulas, operators, If/Switch, error-handling (IfError/IsError), named formulas.
+- **papps-responsive-layout** — Responsive canvas apps: disable fixed-aspect Size/Width, containers (horizontal/vertical/auto-layout), Parent-relative sizing, and breakpoints with App.Width.
+- **papps-screens-navigation** — Screens & navigation: Navigate transitions, Back, passing context, Param() deep links, OnVisible/OnHidden, and the single-screen anti-pattern.
+- **papps-theming** — Theming canvas apps: central color/font tokens via named formulas/App.Theme, applying to controls, modern controls + theme JSON, and consistency at scale.
+
+## M365 + Graph (m365-*) — 17
+
+- **m365-app-registration-oauth2** — Register an Entra app and choose client-credentials (app-only) vs authorization-code (delegated) flow with correct scopes — when setting up any Graph auth
+- **m365-change-notifications-webhooks** — Subscribe to Graph change notifications (webhooks) for mail, lists, drives, and Teams instead of polling — when reacting to M365 changes in near-real-time
+- **m365-entra-id-basics** — Manage Entra ID users, groups, roles, and conditional access fundamentals via Graph/PowerShell — when handling identity, licensing, or RBAC
+- **m365-excel-graph-api** — Read/write Excel workbook ranges, tables, and formulas via Graph workbook sessions — when automating xlsx in OneDrive/SharePoint without opening the file
+- **m365-graph-api-basics** — Call Microsoft Graph REST endpoints (/me, /users, /sites, /drives, /groups) against v1.0 vs beta — when querying any M365 data via HTTP
+- **m365-graph-batch-requests** — Combine up to 20 Graph calls into one $batch request to cut round-trips and latency — when issuing many small Graph calls
+- **m365-graph-pagination** — Follow @odata.nextLink to page through large Graph collections without losing items or hardcoding skip tokens — when a list returns partial results
+- **m365-graph-powershell-sdk** — Administer M365 from the Microsoft Graph PowerShell SDK (Connect-MgGraph, Get-Mg* / New-Mg* cmdlets) — when scripting tenant admin tasks
+- **m365-graph-query-params** — Shape Graph responses with $select, $filter, $expand, $orderby, $top, $count and ConsistencyLevel for advanced queries — when a call returns too much or needs server-side filtering
+- **m365-graph-throttling-retry** — Handle Graph 429 throttling with Retry-After and exponential backoff so automations survive rate limits — when bulk-calling Graph
+- **m365-least-privilege-scopes** — Choose the minimal Graph permission and delegated-vs-application type, then enforce app access policies — when securing any Graph integration
+- **m365-office-scripts-automate** — Write Office Scripts (TypeScript) for Excel on the web and trigger them from Power Automate — when automating in-workbook logic with a no-Graph option
+- **m365-onedrive-drive-items** — Upload, download, share, and traverse OneDrive/SharePoint files via driveItem endpoints and upload sessions — when moving files programmatically
+- **m365-outlook-mail-calendar** — Send mail, read messages, and manage calendar events via Graph — when automating Outlook/Exchange email or scheduling
+- **m365-sharepoint-graph-pnp** — Read/write SharePoint Online lists and document libraries via Graph or PnP PowerShell — when automating list items, files, or site provisioning
+- **m365-spfx-overview** — Scaffold SharePoint Framework (SPFx) web parts/extensions and call Graph from them via MSGraphClientV3 — when building custom UI inside SharePoint/Teams
+- **m365-teams-automation** — Post messages, create channels, and read Teams chats via Graph — when automating Teams notifications or channel management
 
 ## PowerPoint (pptx-*) — 20
 

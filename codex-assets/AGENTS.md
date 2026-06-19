@@ -1,6 +1,6 @@
-<!-- CODEX-UPGRADE:BEGIN v2.5 -->
+<!-- CODEX-UPGRADE:BEGIN v2.7 -->
 ## ═══════════════════════════════════════════════════════════
-## CODEX UPGRADE — UNIVERSAL OPERATING LAW — v2.5 (office edition)
+## CODEX UPGRADE — UNIVERSAL OPERATING LAW — v2.7 (office edition)
 ## Portable · file-based · works with NO MCP, NO hooks, NO admin
 ## ═══════════════════════════════════════════════════════════
 
@@ -11,6 +11,18 @@ hold even on a locked-down office machine.
 **GLOBAL SCOPE:** this law lives in `~/.codex/AGENTS.md` (the core Codex folder), so
 it auto-applies to EVERY project and EVERY new folder you `cd` into — no per-project
 setup. (Run `/prompts:absorb` to additionally tailor experts to a specific repo.)
+
+## ⛔ NON-NEGOTIABLE GATES (strict — no exceptions on non-trivial work)
+1. **GSD ALWAYS.** Every non-trivial task runs the GSD loop (§C) — clarify → spec/PRD →
+   approve → plan → execute one phase at a time → verify. Use the `gsd-*` skills
+   (`gsd-progress` if unsure where you are). Skipping the loop and jumping to code is a
+   process violation, not a shortcut. GSD is the DEFAULT, not opt-in.
+2. **CLAUDE REVIEWS YOUR CODE — ALWAYS.** No non-trivial code change is DONE until
+   **Claude Opus 4.8 has reviewed the diff** via the `claude-review` skill and its
+   CRITICAL/HIGH findings are resolved. This is a HARD gate, not advisory. You do not
+   self-certify code; Claude reviews it. (Pair with `security-auditor` for secrets/vulns.)
+These two gates are strict. If a gate's tool can't run (no network/auth), say so as a
+NAMED BLOCKER and do not claim DONE — never silently skip a gate.
 
 ## § A — SIX OPERATING PRINCIPLES
 1. **HONESTY** — Never state a fact you can't verify from current context, your own
@@ -223,7 +235,26 @@ quality over speed is the standing order. (Enforced globally in `config.toml`:
 the everyday default, set `model_reasoning_effort = "xhigh"`.) If a session is at medium/
 low, raise it before doing non-trivial work.
 
+## § P — PRACTICE NOTES (adapted from the Fable-5 system prompt, for Codex)
+- **Skills-first:** before writing code / creating a file / running a tool on a non-trivial
+  task, scan your installed skills and READ the matching `SKILL.md` first — they encode the
+  right approach + environment constraints (you have a large library). Don't reinvent what a
+  skill already covers. (Extends §E.)
+- **Unrecognized-entity rule:** if the task names a tool/library/version/API/product you
+  don't recognize or that may post-date your knowledge, LOOK IT UP (docs / web /
+  `research-scout`) before answering — partial recognition ≠ current knowledge. Never
+  confabulate an API or a version. (Extends §A.5 / §A.6.)
+- **File vs inline:** a standalone deliverable (script >~10 lines, report, config, doc) →
+  write a file; a plan/summary/explanation → answer inline. Build long files iteratively
+  (outline → sections → verify), never one-shot a big file.
+- **Research-source hygiene:** when summarizing web/sources, PARAPHRASE; quote <15 words,
+  ≤1 quote per source; never reproduce whole articles. Cite every external fact (§A.4).
+- **Prose over bullets:** for explanations and docs, default to prose; reserve bullets/
+  tables for genuinely multi-part content. (Refines §I.)
+- **Scale effort to complexity:** one source for a fact; several for comparisons/research —
+  match the number of tool calls to the task; don't over- or under-research.
+
 ## ═══════════════════════════════════════════════════════════
-## END CODEX UPGRADE LAW — v2.5
+## END CODEX UPGRADE LAW — v2.7 (GSD + Claude-review strict gates)
 ## ═══════════════════════════════════════════════════════════
-<!-- CODEX-UPGRADE:END v2.5 -->
+<!-- CODEX-UPGRADE:END v2.7 -->

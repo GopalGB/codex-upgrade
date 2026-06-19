@@ -39,13 +39,19 @@ failing silently.
 
 <sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
-### Skill library — 270 deep sub-skills (v3.1)
+### Skill library — 372 deep sub-skills (v3.2)
 On top of the 18 core experts, a namespaced library covers your work in depth
-(**288 skills total**). Codex auto-triggers them by description — no command needed.
+(**390 skills total**). Codex auto-triggers them by description — no command needed.
 Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 
 | Pack | # | Covers |
 |---|---|---|
+| `gsd-*` | 12 | **GSD methodology**: new-project→spec→plan→execute→verify→ship + debug/map/progress ([docs/GSD.md](docs/GSD.md)) |
+| `pbi-*` | 23 | Power BI: DAX/CALCULATE, time-intelligence, Power Query M, modeling, RLS, performance |
+| `pa-*` | 20 | Power Automate: flows, triggers, expressions, error handling, RPA/desktop flows, ALM |
+| `copilot-*` | 15 | Copilot Studio: topics, entities, actions, generative answers, M365 declarative agents |
+| `papps-*` | 15 | Power Apps: Power Fx, galleries/forms, delegation, Dataverse, model-driven |
+| `m365-*` | 17 | M365 + Microsoft Graph: auth/scopes, SharePoint, Teams, Outlook, Office Scripts |
 | `algo-*` | 26 | DSA: two-pointers, sliding-window, binary-search, graphs, DP, greedy, tries, complexity |
 | `ml-*` | 25 | regression, trees, boosting, SVM, clustering, PCA, CV, tuning, metrics, time-series, SHAP |
 | `ai-*` | 24 | prompting, CoT, structured output, RAG patterns, fine-tune, evals, guardrails, multimodal, cost |
@@ -80,6 +86,11 @@ several expert lenses **in parallel** — each is an isolated `codex exec` worke
 (read-only, `--ephemeral`) — then synthesizes their findings. Portable (no MCP), uses
 plain `codex exec` rather than the flaky native `[agents]`. Keep lens lists tight —
 each lens is a full Codex session.
+
+**⛔ Strict non-negotiable gates (v3.2):** GSD is **mandatory** on non-trivial work (not
+opt-in) and **Claude Opus 4.8 must review your code** (`claude-review`) before anything is
+DONE — hard gates, never silently skipped. (Codex law also folds in the cross-applicable
+Fable-5 practices: skills-first, no-confabulation, file-vs-inline, source hygiene.)
 
 **Global defaults (apply in EVERY project + new folder automatically — they live in
 `~/.codex`):** GSD on every task · **Claude Opus 4.8 reviews the code** at the verify

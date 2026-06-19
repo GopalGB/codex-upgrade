@@ -1,19 +1,21 @@
-codex-upgrade 3.1.0
+codex-upgrade 3.2.0
 built 2026-06-19
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP (hooks optional)
-skills: 288 (18 core + 270 library) · prompts: 9
+skills: 390 (18 core + 372 library) · prompts: 9 · law v2.7
 changelog:
-  3.1.0 — +141 sub-skills (more depts): algo/DSA (26), ml (25), ai/LLM-eng (24),
-          sde+system-design (29), productivity/time-mgmt (20), career/interview (17).
-          Each ~1.4k-char real how-to (complexity/idioms/methods + pitfalls). To disable
-          a pack: rm -rf ~/.codex/skills/<prefix>-*. 288 skills, all validate; smoke 17/17.
-  3.0.0 — 129-skill library: pptx (20), xls/xlsm (26), vba (20), retail (25),
-          research (22), ba (16). Generator: lib/gen_skills.py. Index: docs/SKILL-LIBRARY.md.
-  2.6.0 — security-auditor + toolbelt + doc-forge (gap-fill, anti-bloat ranked).
-  2.5.0 — GLOBAL defaults: Opus review · GSD every task · context discipline · high/xhigh effort.
+  3.2.0 — GSD pack (12 skills adapted from the Claude Code gsd-* suite; docs/GSD.md) +
+          STRICT non-negotiable gates in AGENTS.md (GSD always + Claude-Opus-4.8-reviews-
+          your-code always). MSFT Power Platform packs: Power BI (23), Power Automate (20),
+          Copilot Studio (15), Power Apps (15), M365/Graph (17). Folded the cross-applicable
+          CLAUDE-FABLE-5 practices into AGENTS.md §P (skills-first, unrecognized-entity/
+          no-confabulation, file-vs-inline, source hygiene, prose-over-bullets). 390 skills, all validate.
+  3.1.0 — +141 skills: algo/ml/ai/sde/productivity/career.
+  3.0.0 — 129-skill library: pptx/xls/vba/retail/research/ba. Generator lib/gen_skills.py.
+  2.6.0 — security-auditor + toolbelt + doc-forge.
+  2.5.0 — GLOBAL defaults: Opus review · GSD every task · context · high/xhigh effort.
   2.4.0 — DEEP repo-grounded experts: ui-ux/research/rag/agents/data + deepened ml.
-  2.3.0 — swarm (parallel codex-exec), CI smoke-on-push, MIT LICENSE, --user-agents-dir.
-  2.2.0 — optional Codex hooks (--with-hooks), /prompts:verify, tests/smoke.sh.
-  2.1.0 — GSD default loop + LESSONS.md wtf-log + reuse-don't-regenerate + security layers.
-  2.0.0 — initial kit: 8 expert skills, 5 prompts, AGENTS.md law, no-MCP installer.
+  2.3.0 — swarm, CI, MIT LICENSE, --user-agents-dir.
+  2.2.0 — optional hooks, /prompts:verify, smoke test.
+  2.1.0 — GSD loop + LESSONS wtf-log + security layers.
+  2.0.0 — initial kit.

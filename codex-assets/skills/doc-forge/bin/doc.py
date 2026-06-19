@@ -60,11 +60,11 @@ def cmd_to_md(a):
 
 
 def cmd_convert(a):
-    _need("pandoc", "brew install pandoc (already installed on this machine)")
+    _need("pandoc", "pandoc is usually preinstalled; else download a release binary to ~/.local/bin (no admin)")
     # PDF output needs a LaTeX engine; warn but let pandoc speak.
     if a.out.lower().endswith(".pdf"):
         print(
-            "note: pandoc->PDF needs a LaTeX engine (e.g. `brew install basictex`).",
+            "note: pandoc->PDF needs a LaTeX engine (user-level: install tinytex via ~/.local, or output .docx/.html instead).",
             file=sys.stderr,
         )
     r = subprocess.run(["pandoc", a.inp, "-o", a.out])
@@ -75,7 +75,7 @@ def cmd_convert(a):
 
 
 def cmd_ocr(a):
-    _need("ocrmypdf", "brew install ocrmypdf  (wraps tesseract, already installed)")
+    _need("ocrmypdf", "uv tool install ocrmypdf (user-level, no admin; needs tesseract+ghostscript present)")
     out = a.output or (os.path.splitext(a.file)[0] + ".ocr.pdf")
     # --skip-text: don't re-OCR pages that already have text; safe + idempotent
     r = subprocess.run(["ocrmypdf", "--skip-text", a.file, out])
@@ -88,7 +88,7 @@ def cmd_ocr(a):
 
 
 def cmd_docx_new(a):
-    _need("pandoc", "brew install pandoc")
+    _need("pandoc", "pandoc usually preinstalled; else release binary → ~/.local/bin (no admin)")
     r = subprocess.run(["pandoc", a.from_md, "-o", a.output])
     if r.returncode == 0:
         print(f"wrote {a.output}")

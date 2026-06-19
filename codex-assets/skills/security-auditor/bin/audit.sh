@@ -46,18 +46,18 @@ echo "# security-auditor — mode=$MODE scope=$SCOPE ($(date '+%Y-%m-%d %H:%M'))
 if have gitleaks; then
   if [ "$MODE" = "staged" ]; then scan "gitleaks (staged secrets)" gitleaks protect --staged --no-banner --redact
   else scan "gitleaks (secrets)" gitleaks detect --no-banner --redact -s "$SCOPE"; fi
-else SKIP+=("gitleaks — brew install gitleaks"); fi
+else SKIP+=("gitleaks — download release binary to ~/.local/bin (no admin)"); fi
 
 # staged mode = fast secrets-only path
 [ "$MODE" = "staged" ] && finish
 
 # --- SAST: semgrep (needs net for --config=auto first run) ---
 if have semgrep; then scan "semgrep (SAST)" semgrep --config=auto --error --quiet "$SCOPE"
-else SKIP+=("semgrep — brew install semgrep"); fi
+else SKIP+=("semgrep — uv tool install semgrep (or pip install --user semgrep)"); fi
 
 # --- deps: osv-scanner ---
 if have osv-scanner; then scan "osv-scanner (deps)" osv-scanner scan --recursive "$SCOPE"
-else SKIP+=("osv-scanner — brew install osv-scanner"); fi
+else SKIP+=("osv-scanner — download release binary to ~/.local/bin (no admin)"); fi
 
 # --- python deps: pip-audit (zero-install via uvx if uv present) ---
 if have uv; then scan "pip-audit (py deps)" uvx pip-audit --progress-spinner off
@@ -67,7 +67,7 @@ else SKIP+=("pip-audit — uvx pip-audit (needs uv) or pip install pip-audit"); 
 # --- full: deep-history secrets + python SAST ---
 if [ "$MODE" = "full" ]; then
   if have trufflehog; then scan "trufflehog (deep history)" trufflehog filesystem "$SCOPE" --no-verification --no-update
-  else SKIP+=("trufflehog — brew install trufflehog"); fi
+  else SKIP+=("trufflehog — download release binary to ~/.local/bin (no admin)"); fi
   if have uv; then scan "bandit (py SAST)" uvx bandit -r "$SCOPE" -ll -q
   elif have bandit; then scan "bandit (py SAST)" bandit -r "$SCOPE" -ll -q
   else SKIP+=("bandit — uvx bandit (needs uv)"); fi

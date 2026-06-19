@@ -173,6 +173,10 @@ pip blocked) and `docs/SKILLS.md` for the full skill reference.
 ---
 
 ## Design principles
+0. **User-level / no-admin, always.** No `sudo`, no system paths — everything installs
+   under `~/.codex`, `~/.codex/tools-venv`, and `~/.local/bin` (via `uv tool` / `pip
+   --user`). `brew` is optional, never required. Runs inside the Codex sandbox; never
+   escalates. No-admin optional-tool installer: `bash lib/install-tools.sh`.
 1. **No MCP, ever required.** Office-safe by construction.
 2. **Graceful degradation.** Tools try to self-install; if blocked, they tell you
    the one command to run. Never a silent failure.

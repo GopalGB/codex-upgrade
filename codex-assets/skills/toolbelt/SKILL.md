@@ -16,21 +16,24 @@ data wrangling, and conversion. This skill is the decision table + usage one-lin
 Most are ALREADY installed — the highest-value win is just *preferring* them.
 
 ## Decision table (reach for the RIGHT one)
-| Need | Use | Note |
+| Need | Use | Install (USER-LEVEL — no admin) |
 |------|-----|------|
 | search code text | **`rg`** (ripgrep) | installed · faster than grep, gitignore-aware |
-| find files | **`fd`** | `brew install fd` · faster/simpler than `find` |
-| **structural** search/refactor (cross-line, AST) | **`ast-grep`** (`sg`) | `brew install ast-grep` · safe rewrites `sed`/`comby` can't do |
+| find files | **`fd`** | release binary → `~/.local/bin` (no admin) · faster than `find` |
+| **structural** search/refactor (cross-line, AST) | **`ast-grep`** (`sg`) | `uv tool install ast-grep-cli` (→ ~/.local/bin) · safe rewrites `sed` can't |
 | JSON | **`jq`** | installed |
-| YAML / TOML / XML | **`yq`** | `brew install yq` · jq syntax; edit `config.toml` + skill frontmatter |
+| YAML / TOML / XML | **`yq`** | `uv tool install yq` (or `pip install --user yq`) |
 | tabular: SQL over CSV/Parquet/JSON | **`duckdb`** | installed · `duckdb -c "SELECT … FROM 'f.parquet'"` |
 | tabular: streaming reshape/stats | **`mlr`** (miller) | installed · constant-memory CSV/TSV/JSON |
 | convert docs (md↔docx↔pdf↔html…) | **`pandoc`** | installed · (see `doc-forge` for OCR/docx-gen) |
-| readable git diff | **`delta`** | optional · `brew install git-delta` |
-| view a file (syntax+lines) | **`bat`** | optional · `brew install bat` |
+| readable git diff | **`delta`** | optional · release binary → `~/.local/bin` |
+| view a file (syntax+lines) | **`bat`** | optional · release binary → `~/.local/bin` |
 
-(Optional, list-don't-force: `qsv` for heavy CSV ops beyond mlr; `difftastic`/`difft`
-for structural diffs when delta isn't enough. duckdb+mlr+delta cover ~90%.)
+**No-admin install:** run `bash ~/.codex/lib/install-tools.sh` (or repo `lib/`) — it puts the
+pip-based CLIs (ast-grep, yq, semgrep, ocrmypdf) in `~/.local/bin` via `uv tool install`, no
+sudo/brew, and prints download links for the few binary-only tools. `brew` is fine *if you
+already have it*, but never required. (Optional extras: `qsv` for heavy CSV beyond mlr,
+`difftastic` for structural diffs — duckdb+mlr+delta cover ~90%.)
 
 ## Usage one-liners
 ```bash

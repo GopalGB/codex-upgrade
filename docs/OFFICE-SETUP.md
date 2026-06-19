@@ -1,7 +1,24 @@
 # Office setup — locked-down machine runbook
 
-For a work machine where you **cannot attach MCP servers**, may **not have admin**,
-and where **pip/network may be blocked**. This kit is designed for exactly that.
+For a work machine where you **cannot attach MCP servers**, **have NO admin/root**,
+where the agent runs **sandboxed**, and where **pip/network may be blocked**. This kit
+is designed for exactly that — everything is USER-LEVEL.
+
+## 0. User-level / no-admin guarantee
+- **No `sudo`, ever.** Nothing in the kit writes to `/usr`, `/etc`, `/opt`, or any
+  system path, or runs a privileged package manager. Verified: `grep -r sudo` = none.
+- **Everything lives under your home:** `~/.codex` (skills/prompts/law/config/lib),
+  `~/.codex/tools-venv` (Python deps), and `~/.local/bin` (optional CLIs). All
+  user-writable, no elevation.
+- **Optional CLI tools, no admin:** run `bash ~/.codex/lib/install-tools.sh` — it uses
+  `uv tool install` / `pip install --user` (→ `~/.local/bin`) and prints download links
+  for the few binary-only tools. **`brew` is never required** (use it only if you
+  already have it). Ensure `~/.local/bin` is on your PATH.
+- **Sandbox-respecting:** the agent runs read-only by default and assumes network may be
+  off; it never asks for `danger-full-access` or `--dangerously-bypass`. If a real
+  write/network is needed, it surfaces a NAMED BLOCKER for you — it never escalates.
+- **Python deps** install into the isolated `~/.codex/tools-venv` (or `pip --user`); if
+  pip is blocked the tool prints the exact user-level command instead of failing.
 
 ## 1. Get the kit onto the machine
 - `git clone <repo>` if git + network are allowed, **or**

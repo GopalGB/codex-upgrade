@@ -1,6 +1,6 @@
-<!-- CODEX-UPGRADE:BEGIN v2.7 -->
+<!-- CODEX-UPGRADE:BEGIN v2.8 -->
 ## ═══════════════════════════════════════════════════════════
-## CODEX UPGRADE — UNIVERSAL OPERATING LAW — v2.7 (office edition)
+## CODEX UPGRADE — UNIVERSAL OPERATING LAW — v2.8 (office edition)
 ## Portable · file-based · works with NO MCP, NO hooks, NO admin
 ## ═══════════════════════════════════════════════════════════
 
@@ -198,13 +198,25 @@ LLM call (model, tokens, cost, confidence, abstained). Cheapest model tier that
 meets the quality bar; upgrade only on measured quality loss.
 
 ## § M — OFFICE / DEGRADATION / LICENSING
+- **USER-LEVEL ONLY — never admin (strict).** Assume NO admin/root. NEVER use `sudo`,
+  write to `/usr`, `/etc`, `/opt`, or any system path, or run a system package manager
+  that needs elevation. ALL installs go to user space: the tools-venv, `uv tool install`
+  or `pip install --user` (→ `~/.local/bin`), or download a release binary into
+  `~/.local/bin`. `brew` is OPTIONAL (treat as "if available"), never required — prefer
+  `uv`/`pip --user`. The kit ships `lib/install-tools.sh` for no-admin optional CLIs.
+  Everything the kit writes lives under `~/.codex` / `~/.local` / the project's `.planning`.
+- **Respect the sandbox.** Default Codex sandbox is read-only; assume network may be OFF.
+  Work within the sandbox — never request `danger-full-access` or `--dangerously-bypass`
+  to get around it. If a step truly needs a write/network the sandbox forbids, surface it
+  as a NAMED BLOCKER for the user to approve, don't escalate privileges.
 - **Config precedence (v0.121):** base config < `[profiles.NAME]` < trusted-project
   `.codex` < CLI flags. `-c key=value` and `-s read-only` override the committed
   config for one run. Default sandbox read-only; never suggest danger-full-access;
   keep `network_access = false` even in workspace-write.
-- **Degradation ladder for tools:** venv install → vendored wheels (`--no-index
-  --find-links wheels/`) → stdlib-only path. When a dep can't be installed, print
-  the EXACT manual command (a NAMED BLOCKER), never a silent failure.
+- **Degradation ladder for tools:** tools-venv / `uv tool` / `pip --user` → vendored
+  wheels (`--no-index --find-links wheels/`) → stdlib-only path. When a dep can't be
+  installed (no admin, no network), print the EXACT user-level command (a NAMED
+  BLOCKER), never a silent failure and never a sudo/brew instruction.
 - **Credentials:** API keys from env vars ONLY. Missing key → NAMED BLOCKER + the
   free-signup URL; never silently degrade in a way that looks like real results.
 - **AGPL guard:** `pdf-extract` defaults to permissive pypdf/pdfplumber; PyMuPDF
@@ -255,6 +267,6 @@ low, raise it before doing non-trivial work.
   match the number of tool calls to the task; don't over- or under-research.
 
 ## ═══════════════════════════════════════════════════════════
-## END CODEX UPGRADE LAW — v2.7 (GSD + Claude-review strict gates)
+## END CODEX UPGRADE LAW — v2.8 (user-level + sandbox-safe)
 ## ═══════════════════════════════════════════════════════════
-<!-- CODEX-UPGRADE:END v2.7 -->
+<!-- CODEX-UPGRADE:END v2.8 -->

@@ -42,7 +42,7 @@ python3 "$DF" docx-new out.docx --from-md draft.md   # generate a .docx from mar
 
 ## Installs (office-aware)
 - `pandoc` + `tesseract` are ALREADY on this machine. `ocrmypdf` is the one system add
-  (`brew install ocrmypdf`). `markitdown` / `python-docx` auto-install into the tools
+  (`uv tool install ocrmypdf`, user-level — needs tesseract+ghostscript present). `markitdown` / `python-docx` auto-install into the tools
   venv on first use (named-blocker if pip is blocked).
 - Picked MarkItDown over marker (GPL+commercial cap) / docling (multi-GB torch) — the
   office-safe, permissive, lightweight choice.

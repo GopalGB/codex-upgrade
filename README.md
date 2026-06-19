@@ -33,6 +33,11 @@ failing silently.
 | `agent-builder` | Production agentic systems (LangGraph/MCP/A2A, eval+observe) | none |
 | `data-engineer` | Idempotent ELT, no-OOM (dbt/SQLMesh/DuckDB/Polars/dlt) | none |
 | `claude-review` | **Cross-review**: Claude Opus 4.8 reviews the git diff (the verify gate) | none |
+| `security-auditor` | Secret scan + SAST + dep-audit (gitleaks/semgrep/osv/pip-audit) | none* |
+| `toolbelt` | Prefer fast CLI tools (rg/jq/pandoc/duckdb + ast-grep/fd/yq) over scripts | none* |
+| `doc-forge` | DOCX + universal convert (pandoc) + OCR for scanned PDFs/patents | pandoc/ocrmypdf |
+
+<sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
 Skills marked **deep** are *repo-grounded*: each one's `SKILL.md` carries a verified
 "absorb these repos" list (current best-in-class, with maintained/stale flags) + the

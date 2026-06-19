@@ -23,6 +23,9 @@ for the full command list.
 | **agent-builder** | Production agentic systems (repo-grounded) | — (playbook) | none |
 | **data-engineer** | Idempotent ELT, no-OOM (repo-grounded) | — (playbook) | none |
 | **claude-review** | Claude Opus 4.8 reviews the git diff (cross-review verify gate) | `bin/review.sh` | needs `claude` CLI + net |
+| **security-auditor** | Secret scan + SAST + dep-audit, run-what's-installed | `bin/audit.sh` | gitleaks/semgrep/osv/uvx |
+| **toolbelt** | Prefer fast CLI tools over hand-rolled scripts (decision table) | — (playbook) | rg/jq/pandoc/duckdb +ast-grep |
+| **doc-forge** | DOCX + pandoc convert + OCR (scanned PDFs/patents) | `bin/doc.py` | pandoc/ocrmypdf + markitdown |
 
 The five **repo-grounded** experts (ui-ux/research/rag/agents/data + deepened ml) each
 carry a verified, dated "absorb these repos" list with maintained/stale flags and the

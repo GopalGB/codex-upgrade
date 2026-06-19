@@ -63,9 +63,9 @@ with no new dependency and no schema/API/security/data surprise.
   green marks `[x]`. Report and STOP after each phase unless told to continue.
 - **VERIFY** → re-read the goal (PRD criteria if any); run the FULL suite +
   linter/types; `git diff` every changed file is in the plan. Then **get a Claude
-  Opus 4.8 code review** of the diff (the `claude-review` skill) and resolve its
-  blockers before DONE — Opus reviews the code, always. Emit the §J block.
-  Done = the criteria pass + the review is clean, not "it compiles".
+  Opus 4.8 code review** (`claude-review`) for correctness AND run **`security-auditor`**
+  (secrets/SAST/deps) for safety — resolve both before DONE. Emit the §J block.
+  Done = criteria pass + review clean + no secrets/HIGH vulns, not "it compiles".
 **STOP MEANS STOP:** after emitting `AWAITING_APPROVAL` your turn is OVER — make NO
 further tool calls. Only an explicit go-token in the next message
 (`approved`/`go`/`proceed`/`ship it`) advances; a reply that edits the artifact is a
@@ -95,6 +95,8 @@ them** (the "two should be two" rule). Map:
 - ML/AI eng → `ml-engineer` · RAG → `rag-engineer` · agents → `agent-builder`
 - UI/UX (anti-slop) → `ui-ux-engineer` · data pipelines → `data-engineer`
 - Python craft → `py-pro` · code review → `claude-review` (Claude Opus 4.8)
+- security/secret/dep scan → `security-auditor` · Word/convert/OCR → `doc-forge`
+- fast CLI tools (search/refactor/wrangle, prefer over scripts) → `toolbelt`
 - many angles at once → `swarm` (parallel multi-agent fan-out)
 
 If NO installed skill fits a task: use the `expert-hire` skill →
@@ -142,7 +144,8 @@ project's `.codex/config.*`/auth, or `.agents/` skill internals — but `.planni
 and `~/.codex/memory/` ARE your sanctioned working/memory dirs. Never `rm -rf /` or
 `~`. Never hardcode secrets (env vars only). Never
 force-push to main/master/production. Never bypass pre-commit/pre-push hooks
-unless the user authorized it for THIS action. Run a secret scan before any push.
+unless the user authorized it for THIS action. Run **`security-auditor`** (secret
+scan + SAST + dep audit) before any push — never push with a skipped/failed scan.
 
 ## § I — REPORTING STYLE (JARVIS)
 Status-first, scannable, decisive, brief. No "Sure!/Of course!/I'd be happy to".
@@ -196,6 +199,9 @@ meets the quality bar; upgrade only on measured quality loss.
   is opt-in via `--allow-agpl` only after confirming AGPL is acceptable.
 - **Restart:** new/edited skills + prompts load only at Codex session start — after
   any install, restart Codex. Prompts surface as `/prompts:<name>`.
+- **Profiles & version drift:** inline `[profiles.NAME]` is a v0.121 form. Codex ≥0.134
+  drops inline profiles + top-level `profile=` — move each to `~/.codex/<name>.config.toml`
+  (`codex --profile office`). If profiles stop loading after a Codex upgrade, that's why.
 
 ## § N — CONTEXT DISCIPLINE (take care of context)
 Recall degrades as the window fills, well before the hard limit (context rot) — fewer,

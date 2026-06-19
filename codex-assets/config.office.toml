@@ -3,6 +3,13 @@
 # this can't collide with existing top-level keys. Top-level suggestions are COMMENTED
 # below — uncomment into your config.toml's top section by hand if you want them global.
 #
+# ⚠ CODEX VERSION NOTE (verified 2026-06-19): these INLINE [profiles.NAME] tables are
+# correct for v0.121. In Codex >= 0.134 inline profiles + the top-level `profile=`
+# selector were DROPPED — each profile must move to its own `~/.codex/<name>.config.toml`
+# (e.g. ~/.codex/office.config.toml) and is selected with `codex --profile office`.
+# If you upgrade Codex past 0.134 and profiles stop loading, that's why — split them out.
+# (Ref: openai/codex issue #24858.) The effort/sandbox top-level keys below are unaffected.
+#
 # Suggested global top-level (DO NOT paste if you already set these — TOML forbids
 # duplicate keys and Codex will fail to parse):
 #   approval_policy = "untrusted"     # prompt before running anything not trusted
@@ -10,7 +17,7 @@
 #   web_search      = "disabled"      # offline by default
 #   # model = "<your-entitled-model>" # e.g. set to the model your office account allows
 #   # model_provider = "openai"
-#   # model_reasoning_effort = "low"  # one of: none|minimal|low|medium|high|xhigh
+#   # model_reasoning_effort = "high" # high/xhigh only — never medium (v2.5 law); install.sh sets this
 # NEVER set sandbox_mode = "danger-full-access" on an office machine.
 # 100% MCP-free == simply having NO [mcp_servers.*] blocks (MCP is opt-in; no switch).
 

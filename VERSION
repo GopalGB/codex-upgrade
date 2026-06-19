@@ -1,17 +1,19 @@
-codex-upgrade 2.5.0
-built 2026-06-18
+codex-upgrade 2.6.0
+built 2026-06-19
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP (hooks optional)
-skills: 15 · prompts: 9
+skills: 18 · prompts: 9
 changelog:
-  2.5.0 — GLOBAL defaults (live in ~/.codex → apply to every project + new folder,
-          no per-project setup): Claude Opus 4.8 reviews the code at the §C verify gate
-          (NEW claude-review skill) · GSD on every task autonomously · reasoning effort
-          high/xhigh only, never medium (config model_reasoning_effort=high, plan=xhigh)
-          · §N context discipline (compact/JIT/.planning scratchpad/context-rot).
-  2.4.0 — DEEP repo-grounded expert skills: ui-ux-engineer, research-expert, rag-engineer,
-          agent-builder, data-engineer + deepened ml-engineer (verified "absorb" repo lists).
-  2.3.0 — swarm (parallel codex-exec fan-out), CI smoke-on-push, MIT LICENSE, --user-agents-dir.
+  2.6.0 — GAP-fill scout (anti-bloat ranked): +security-auditor (gitleaks/semgrep/osv/
+          pip-audit — gives §H teeth, runs at verify gate beside claude-review),
+          +toolbelt (prefer rg/jq/pandoc/duckdb/mlr + ast-grep/fd/yq over scripts),
+          +doc-forge (DOCX + pandoc convert + OCR for scanned patents; MIT markitdown,
+          no AGPL). Codex 0.134 inline-profile breaking-change documented. db-expert
+          DEFERRED to hold the anti-bloat line. (rejected: comby, marker/docling, plugin dist.)
+  2.5.0 — GLOBAL defaults: Opus 4.8 review at verify · GSD every task · context discipline
+          · reasoning effort high/xhigh only (config-enforced).
+  2.4.0 — DEEP repo-grounded experts: ui-ux/research/rag/agents/data + deepened ml.
+  2.3.0 — swarm (parallel codex-exec), CI smoke-on-push, MIT LICENSE, --user-agents-dir.
   2.2.0 — optional Codex hooks (--with-hooks), /prompts:verify, tests/smoke.sh.
   2.1.0 — GSD default loop + LESSONS.md wtf-log + reuse-don't-regenerate + security layers.
   2.0.0 — initial kit: 8 expert skills, 5 prompts, AGENTS.md law, no-MCP installer.

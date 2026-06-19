@@ -1,60 +1,75 @@
 ---
 name: ml-engineer
 description: >-
-  Expert machine-learning playbook for building real models the right way -
-  tabular (the common case for Excel/CSV data), plus NLP/CV and LLM fine-tune
-  decisions. Use when asked to train / build / evaluate / improve a model, do
-  feature engineering, pick a metric, or diagnose over/underfitting. Triggers:
-  "machine learning", "train a model", "ML model", "predict", "classifier",
-  "regression", "feature engineering", "cross validation", "fine-tune".
+  Deep, end-to-end ML / AI engineering — data → train/fine-tune → eval → quantize →
+  serve, plus classical/tabular ML done right. NOT "call an API and call it ML". Use
+  for: training or fine-tuning models, LoRA/QLoRA/SFT/DPO/GRPO post-training, building
+  an eval harness, serving/inference optimization, quantization, picking the right
+  model/engine, or tabular modeling. Triggers: "fine-tune", "LoRA", "QLoRA", "SFT",
+  "DPO", "GRPO", "RLHF", "train a model", "ML model", "eval harness", "vLLM", "SGLang",
+  "quantize", "inference", "serve a model", "embeddings", "classifier", "regression".
 ---
 
-# ml-engineer — build models that actually generalize (no MCP)
+# ml-engineer — own the whole loop (verified 2026 stack)
 
-Stdlib + the standard scientific stack. The `xlsx-wrangler` / `research-scout`
-skills feed this one (data in, papers in). Install deps via the tools venv on
-demand: `scikit-learn pandas numpy` (+ `xgboost`/`lightgbm` for tabular SOTA,
-`torch` only when truly needed).
+An ML engineer owns data → training → **eval** → quantize → serve, not just an API
+call. Decouple four layers: **model defs** (transformers) · **training loop** (TRL/
+Axolotl) · **kernels** (Unsloth/FlashAttention) · **serving** (vLLM/SGLang) — separate
+and composable.
 
-## The non-negotiable order of operations
-1. **Frame the problem.** Supervised? classification vs regression? What is the
-   ONE metric that maps to the real objective (not just accuracy)? Write it down.
-2. **Split BEFORE you look.** Hold out a test set first. For time data, split by
-   time, never randomly. Leakage is the #1 way ML lies — guard it explicitly.
-3. **Baseline first.** Dummy/most-frequent, then a linear/logistic or a single
-   tree. No fancy model ships until it beats the baseline on the holdout.
-4. **Cross-validate honestly.** k-fold (StratifiedKFold for imbalance,
-   GroupKFold when rows share an entity, TimeSeriesSplit for time). Report
-   mean ± std, not a single lucky fold.
-5. **Feature engineering inside the pipeline.** Fit scalers/encoders/imputers on
-   train folds only — use `sklearn.pipeline.Pipeline` + `ColumnTransformer` so
-   preprocessing can't leak. No manual fit-on-all-data.
-6. **Then tune.** Strong tabular default: gradient-boosted trees (XGBoost /
-   LightGBM). Tune with a small randomized/Bayesian search, not a giant grid.
-7. **Evaluate on the untouched test set ONCE.** Report the metric + a confusion
-   matrix / residual plot + calibration. If you peeked, you no longer have a
-   test set — say so.
+## Absorb these repos (current, maintained)
+- **PyTorch 2.x** — everything is a torch program; use `torch.compile` + FlashAttention-2/3
+  / FlexAttention (the free 1.3–2.8× most leave off).
+- **huggingface/transformers** (162k) — reference model defs + Trainer. + `datasets`,
+  `tokenizers`.
+- **huggingface/trl** (19k) https://github.com/huggingface/trl — SFT/DPO/GRPO/reward
+  modeling. The objective-first post-training lib.
+- **huggingface/peft** (21k) — LoRA/QLoRA/DoRA adapters (the layer under TRL/Axolotl).
+- **unslothai/unsloth** (67k) https://github.com/unslothai/unsloth — 2× faster, ~70%
+  less VRAM LoRA via Triton kernels.
+- **axolotl-ai-cloud/axolotl** (12k) — YAML config-as-code fine-tuning orchestration.
+- **volcengine/verl** (22k) — production RL post-training (GRPO/PPO/DAPO) at scale.
+- **vllm-project/vllm** (83k) https://github.com/vllm-project/vllm — default serving
+  (PagedAttention, continuous batching, OpenAI-compatible).
+- **sgl-project/sglang** (29k) — serving for structured/agentic/RAG (RadixAttention
+  prefix reuse).
+- **ggml-org/llama.cpp** (117k) — GGUF quant + local CPU/GPU inference.
+- **EleutherAI/lm-evaluation-harness** (13k) — standard public benchmarks (apples-to-apples).
+- **UKGovernmentBEIS/inspect_ai** — agentic/model-graded domain evals.
+- **pola-rs/polars** (39k) + **DuckDB** — the data layer (Arrow, lazy, no-OOM).
+- Tabular: **LightGBM** (big/fast) · **CatBoost** (categoricals) · **XGBoost** (forgiving)
+  + scikit-learn pipelines — STILL beat neural nets on tabular in 2026.
 
-## Metric cheat-sheet
-- Imbalanced classification → PR-AUC, F1, recall@k — NOT raw accuracy.
-- Probabilities matter → log-loss / Brier + a calibration curve.
-- Regression → MAE for robustness, RMSE when big errors hurt more, plus R².
-- Ranking/recsys → NDCG, MAP, recall@k.
+## Canonical workflow
+1. **Data first** — DuckDB to crunch/filter raw files on disk → Polars (lazy) for
+   transforms → `.to_numpy()/.to_pandas()` ONLY at the model/plot boundary. Curate +
+   **decontaminate** vs eval set (contamination is the #1 silent lie).
+2. **Frame + baseline** — pick the ONE metric tied to the objective; dummy + linear/tree
+   baseline before anything fancy. Tabular → LightGBM/CatBoost first.
+3. **Split before you look** — hold out test first; time-split for time data; Group/
+   Stratified K-fold; preprocessing inside the Pipeline (no leakage).
+4. **Fine-tune as config-as-code** — Axolotl YAML or TRL directly, Unsloth kernels
+   underneath, PEFT LoRA (deliberate target_modules/rank/alpha). The 2026 post-train
+   recipe: **SFT → DPO/SimPO → GRPO/DAPO with verifiable rewards** (not "one fine-tune").
+5. **Eval two-tier** — lm-eval-harness (comparable benchmarks) + a domain golden set in
+   inspect_ai (model-graded + programmatic). Multi-seed, report variance, gate per run.
+6. **Quantize + MEASURE** — AWQ (reasoning), GPTQ (throughput), FP8 (27B+ near-lossless),
+   GGUF (local). Always re-eval quantized on the golden set — INT4 is NOT free.
+7. **Serve by workload** — SGLang (structured/agentic/RAG prefix reuse) · vLLM (breadth/
+   batch) · TensorRT-LLM only when you must squeeze NVIDIA.
 
-## Anti-fabrication law (this is the point)
-- NEVER report a metric you did not actually compute from a real run. If you
-  haven't run it, say "not yet measured."
-- NEVER claim a model is "good" without the baseline number next to it.
-- Show the exact command + dataset shape that produced every number.
-- Surface leakage risks, distribution shift, and tiny-sample caveats up front.
+## Expert vs generic
+Generic calls an API and thinks that's ML · "just fine-tune" in a notebook · evals on a
+few prompts · neural net on tabular · ships quantized assuming lossless · pandas OOMs.
+Expert owns the loop · config-as-code + logged runs · golden-set + harness eval · trees
+for tabular · re-evals quant · DuckDB/Polars.
 
-## When NOT to do ML
-If a rule, a SQL query, or a lookup table solves it — do that. ML is for when
-the mapping is learned from data and worth the maintenance cost.
+## Anti-fabrication law
+NEVER report a metric you didn't actually compute. NEVER call a model "good" without the
+baseline next to it. Show the exact command + dataset shape behind every number. Surface
+leakage/contamination/shift/tiny-sample caveats. Build the eval set BEFORE tuning. (And
+don't ML what a SQL query or lookup solves.)
 
-## LLM / fine-tune decisions
-- Need facts → RAG, not fine-tune (facts go stale in weights).
-- Need style/format → system prompt + few-shot first.
-- Need a smaller/cheaper model to match a big one → distill (fine-tune on the
-  big model's outputs) only after RAG + prompting plateau.
-Build the eval set (50-200 labeled examples) BEFORE touching the prompt/model.
+## LLM decisions
+Facts → RAG (see `rag-engineer`), not fine-tune. Style/format → prompt + few-shot.
+Smaller/cheaper to match a big model → distill. Fine-tune only after prompting+RAG plateau.

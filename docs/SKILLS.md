@@ -13,10 +13,19 @@ for the full command list.
 | **pdf-extract** | PDF → text/tables/markdown (permissive libs) | `bin/pdf.py` | pypdf, pdfplumber (auto) |
 | **research-scout** | Papers / prior art / DOIs (keyless) | `bin/research.py` | stdlib only |
 | **patent-scout** | US patents (USPTO ODP, free key) + manual links | `bin/patents.py` | stdlib only |
-| **ml-engineer** | Build models that generalize | — (playbook) | sklearn etc (when used) |
+| **ml-engineer** | Deep end-to-end ML/AI eng (repo-grounded) | — (playbook) | sklearn etc (when used) |
 | **py-pro** | Production Python discipline | — (playbook) | none |
 | **expert-hire** | Find/install/create a skill on demand | — (meta) | none |
 | **swarm** | Fan a task across N expert lenses in parallel, then synthesize | `bin/swarm.py` | stdlib only |
+| **ui-ux-engineer** | Distinctive design, anti-AI-slop (repo-grounded) | — (playbook) | none |
+| **research-expert** | Deep research methodology (repo-grounded) | — (playbook) | none |
+| **rag-engineer** | RAG done right: hybrid+rerank+eval (repo-grounded) | — (playbook) | none |
+| **agent-builder** | Production agentic systems (repo-grounded) | — (playbook) | none |
+| **data-engineer** | Idempotent ELT, no-OOM (repo-grounded) | — (playbook) | none |
+
+The five **repo-grounded** experts (ui-ux/research/rag/agents/data + deepened ml) each
+carry a verified, dated "absorb these repos" list with maintained/stale flags and the
+expert-vs-generic gaps — researched, not guessed. Re-verify repo currency periodically.
 
 ## How invocation works (Codex v0.121)
 - **Skills auto-trigger** from their `description` (the sole always-in-context

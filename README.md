@@ -23,10 +23,19 @@ failing silently.
 | `pdf-extract` | PDF → text / tables / LLM-ready markdown | pymupdf etc (auto) |
 | `research-scout` | Paper/prior-art search (Semantic Scholar/arXiv/Crossref; OpenAlex opt) | **none — stdlib** |
 | `patent-scout` | US patent search (USPTO ODP, free key) + manual-link fallback | **none — stdlib** |
-| `ml-engineer` | Build models that generalize (leakage-safe, baseline-first) | sklearn (auto) |
+| `ml-engineer` | **Deep** end-to-end ML/AI eng (train→fine-tune→eval→quantize→serve) | sklearn etc (auto) |
 | `py-pro` | Production Python discipline + 2026 toolchain | none |
 | `expert-hire` | **Meta**: install an existing skill or create a new one per project | none |
 | `swarm` | **Multi-agent**: fan a task across N expert lenses in parallel, then synthesize | **none — stdlib** |
+| `ui-ux-engineer` | Distinctive, taste-driven UI — anti-AI-slop (shadcn/Base UI/Tailwind v4/Motion) | none |
+| `research-expert` | Deep research **methodology** + best research-agent repos | none |
+| `rag-engineer` | RAG done right — hybrid + rerank + eval (not cosine-and-pray) | none |
+| `agent-builder` | Production agentic systems (LangGraph/MCP/A2A, eval+observe) | none |
+| `data-engineer` | Idempotent ELT, no-OOM (dbt/SQLMesh/DuckDB/Polars/dlt) | none |
+
+Skills marked **deep** are *repo-grounded*: each one's `SKILL.md` carries a verified
+"absorb these repos" list (current best-in-class, with maintained/stale flags) + the
+expert-vs-generic gaps — not generic advice.
 
 `research-scout` is keyless out of the box (Semantic Scholar + arXiv + Crossref).
 `patent-scout`'s USPTO source needs a free key (it prints exact signup steps and

@@ -1,14 +1,16 @@
-codex-upgrade 2.3.0
+codex-upgrade 2.4.0
 built 2026-06-18
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP (hooks optional)
+skills: 14 · prompts: 9
 changelog:
-  2.3.0 — SWARM: fan one task across multiple expert lenses in parallel via
-          isolated `codex exec` workers (--ephemeral, read-only), then synthesize.
-          New: swarm skill + /prompts:swarm. install.sh --user-agents-dir (install
-          to ~/.agents/skills). CI smoke-on-push (.github/workflows/smoke.yml). MIT LICENSE.
-  2.2.0 — OPTIONAL Codex hooks (install.sh --with-hooks): UserPromptSubmit
-          frustration-capture + SessionStart law-ritual. /prompts:verify. tests/smoke.sh.
-  2.1.0 — GSD default loop (tiered clarity/PRD approval gates), LESSONS.md wtf-log,
-          reuse-don't-regenerate, layered-architecture security defaults. /prd, /lesson.
+  2.4.0 — DEEP repo-grounded expert skills (researched + verified, not generic):
+          NEW ui-ux-engineer (anti-AI-slop), research-expert (methodology),
+          rag-engineer (hybrid+rerank+eval), agent-builder (production agentic),
+          data-engineer (idempotent ELT). DEEPENED ml-engineer (end-to-end AI/ML).
+          Each carries a verified "absorb these repos" list with maintained/stale flags.
+  2.3.0 — swarm skill + /prompts:swarm (parallel codex-exec fan-out), CI smoke-on-push,
+          MIT LICENSE, install.sh --user-agents-dir.
+  2.2.0 — optional Codex hooks (--with-hooks), /prompts:verify, tests/smoke.sh.
+  2.1.0 — GSD default loop + LESSONS.md wtf-log + reuse-don't-regenerate + security layers.
   2.0.0 — initial kit: 8 expert skills, 5 prompts, AGENTS.md law, no-MCP installer.

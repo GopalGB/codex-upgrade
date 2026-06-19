@@ -1,0 +1,19 @@
+name: smoke
+# Runs the no-network self-test on every push / PR. Pure stdlib — no secrets, no
+# Codex, no network. Mirrors `bash tests/smoke.sh` locally.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run smoke self-test
+        run: bash tests/smoke.sh

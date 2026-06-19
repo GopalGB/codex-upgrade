@@ -16,6 +16,7 @@ for the full command list.
 | **ml-engineer** | Build models that generalize | — (playbook) | sklearn etc (when used) |
 | **py-pro** | Production Python discipline | — (playbook) | none |
 | **expert-hire** | Find/install/create a skill on demand | — (meta) | none |
+| **swarm** | Fan a task across N expert lenses in parallel, then synthesize | `bin/swarm.py` | stdlib only |
 
 ## How invocation works (Codex v0.121)
 - **Skills auto-trigger** from their `description` (the sole always-in-context
@@ -23,7 +24,7 @@ for the full command list.
   `python3 ~/.codex/skills/<skill>/bin/<script>.py ...`.
 - **Prompts** are explicit: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`,
   `/prompts:council`, `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`,
-  `/prompts:verify`.
+  `/prompts:verify`, `/prompts:swarm`.
 - After installing or editing skills/prompts, **restart Codex** (re-scan happens at
   session start only).
 

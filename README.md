@@ -26,6 +26,7 @@ failing silently.
 | `ml-engineer` | Build models that generalize (leakage-safe, baseline-first) | sklearn (auto) |
 | `py-pro` | Production Python discipline + 2026 toolchain | none |
 | `expert-hire` | **Meta**: install an existing skill or create a new one per project | none |
+| `swarm` | **Multi-agent**: fan a task across N expert lenses in parallel, then synthesize | **none — stdlib** |
 
 `research-scout` is keyless out of the box (Semantic Scholar + arXiv + Crossref).
 `patent-scout`'s USPTO source needs a free key (it prints exact signup steps and
@@ -33,7 +34,14 @@ falls back to manual links + academic prior-art when absent — never fakes resu
 
 **Slash prompts** (in `codex-assets/prompts/`) — invoked as `/prompts:<name>` in
 Codex: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`, `/prompts:council`,
-`/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`, `/prompts:verify`.
+`/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`, `/prompts:verify`,
+`/prompts:swarm`.
+
+**Swarm (multi-agent):** `/prompts:swarm` or the `swarm` skill fans one task across
+several expert lenses **in parallel** — each is an isolated `codex exec` worker
+(read-only, `--ephemeral`) — then synthesizes their findings. Portable (no MCP), uses
+plain `codex exec` rather than the flaky native `[agents]`. Keep lens lists tight —
+each lens is a full Codex session.
 
 **Default methodology — the GSD loop (on by default, no command):** for any real
 work Codex runs **clarify what+why → (PRD for software) → your approval → phased plan
@@ -71,6 +79,7 @@ bash install.sh --dry-run     # show exactly what would change, do nothing
 bash install.sh --link        # symlink instead of copy (for active development)
 bash install.sh --with-config # also merge the safe "office" profile into config.toml
 bash install.sh --with-hooks  # OPTIONAL: hard-enforce the lessons loop via Codex hooks
+bash install.sh --user-agents-dir  # install skills to ~/.agents/skills (future-proof)
 ```
 
 ### Optional: hard-enforce the lessons loop (home machines)

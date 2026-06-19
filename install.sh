@@ -11,6 +11,8 @@
 #   --with-hooks   install the OPTIONAL Codex hooks (hard-enforce the §F lessons loop).
 #                  Enables the experimental [features] codex_hooks flag. Home machines
 #                  only — not for a locked-down office. See docs/SKILLS.md.
+#   --user-agents-dir  install skills+lib to ~/.agents/skills (the non-deprecated
+#                  v0.121 user-scope path) instead of ~/.codex/skills.
 #   --help
 set -euo pipefail
 
@@ -20,18 +22,27 @@ CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
 TS="$(date +%Y%m%d-%H%M%S)"
 BACKUP="$CODEX_HOME/backups/$TS"
 
-DRY=0; LINK=0; WITH_CONFIG=0; WITH_HOOKS=0
+DRY=0; LINK=0; WITH_CONFIG=0; WITH_HOOKS=0; AGENTS_DIR=0
 for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY=1 ;;
     --link) LINK=1 ;;
     --with-config) WITH_CONFIG=1 ;;
     --with-hooks) WITH_HOOKS=1 ;;
+    --user-agents-dir) AGENTS_DIR=1 ;;
     --help|-h)
-      sed -n '2,18p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
+      sed -n '2,20p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown flag: $arg (try --help)"; exit 2 ;;
   esac
 done
+
+# Skills + shared lib target. Default = ~/.codex/skills (proven on 0.121, in use).
+# --user-agents-dir = ~/.agents/skills (the non-deprecated v0.121 user-scope path).
+if [ "$AGENTS_DIR" = 1 ]; then
+  SKILLS_ROOT="$HOME/.agents/skills"; LIB_ROOT="$HOME/.agents/lib"
+else
+  SKILLS_ROOT="$CODEX_HOME/skills"; LIB_ROOT="$CODEX_HOME/lib"
+fi
 
 say()  { printf '%s\n' "$*"; }
 run()  { if [ "$DRY" = 1 ]; then say "  [dry-run] $*"; else eval "$*"; fi; }
@@ -45,12 +56,13 @@ say "codex home:  $CODEX_HOME"
 say "mode:        $( [ "$LINK" = 1 ] && echo symlink || echo copy )"
 say "config:      $( [ "$WITH_CONFIG" = 1 ] && echo 'merge office profile' || echo 'skip (use --with-config)')"
 say "hooks:       $( [ "$WITH_HOOKS" = 1 ] && echo 'install experimental codex_hooks' || echo 'skip (use --with-hooks)')"
+say "skills ->    $SKILLS_ROOT"
 say ""
 
 [ -d "$ASSETS" ] || { echo "ERROR: $ASSETS not found - run from the repo root."; exit 1; }
 
 # --- 0. dirs + backup ---------------------------------------------------------
-run "mkdir -p '$CODEX_HOME/skills' '$CODEX_HOME/prompts' '$CODEX_HOME/memory' '$BACKUP'"
+run "mkdir -p '$SKILLS_ROOT' '$CODEX_HOME/prompts' '$CODEX_HOME/memory' '$BACKUP'"
 if [ -f "$CODEX_HOME/AGENTS.md" ]; then run "cp '$CODEX_HOME/AGENTS.md' '$BACKUP/AGENTS.md'"; fi
 if [ -f "$CODEX_HOME/config.toml" ]; then run "cp '$CODEX_HOME/config.toml' '$BACKUP/config.toml'"; fi
 if [ -f "$CODEX_HOME/memory/LESSONS.md" ]; then run "cp '$CODEX_HOME/memory/LESSONS.md' '$BACKUP/LESSONS.md'"; fi
@@ -73,18 +85,19 @@ install_dir() { # $1 = src dir, $2 = dest dir
   if [ "$LINK" = 1 ]; then run "ln -sfn '$src' '$dest'"; else run "cp -R '$src' '$dest'"; fi
 }
 
-install_dir "$ASSETS/lib" "$CODEX_HOME/lib"
-say "✓ shared lib (codex_env.py) -> $CODEX_HOME/lib"
+run "mkdir -p '$LIB_ROOT'"
+install_dir "$ASSETS/lib" "$LIB_ROOT"
+say "✓ shared lib (codex_env.py) -> $LIB_ROOT"
 
 # --- 2. skills ----------------------------------------------------------------
 SKILLS=0
 for d in "$ASSETS"/skills/*/; do
   name="$(basename "$d")"
   [ "$name" = "_lib" ] && continue
-  install_dir "$d" "$CODEX_HOME/skills/$name"
+  install_dir "$d" "$SKILLS_ROOT/$name"
   SKILLS=$((SKILLS+1))
 done
-say "✓ skills installed: $SKILLS"
+say "✓ skills installed: $SKILLS -> $SKILLS_ROOT"
 
 # --- 3. prompts ---------------------------------------------------------------
 PROMPTS=0
@@ -198,5 +211,5 @@ line
 say "⚠ RESTART Codex now — skills + prompts are only re-scanned at session start."
 say "Verify:    codex  →  /skills     (lists xlsx-wrangler, deck-smith, pdf-extract, …)"
 say "Prompts:   /prompts:absorb  (tailor experts to a repo) · /prompts:oracle · /prompts:council"
-say "Smoke test: python3 '$CODEX_HOME/skills/research-scout/bin/research.py' search 'rag eval' --source arxiv --n 3"
+say "Smoke test: python3 '$SKILLS_ROOT/research-scout/bin/research.py' search 'rag eval' --source arxiv --n 3"
 say "Rollback:  your previous config is in $BACKUP"

@@ -1,6 +1,6 @@
-# Codex Upgrade — Skill Library Index
+# Codex Upgrade — Skill Library Index (288 skills)
 
-> 147 skills total. Core experts + a deep sub-skill library (PowerPoint, Excel/xlsm, VBA, retail, research, analytics). Codex auto-triggers by description; no command needed.
+> Codex auto-triggers by description; no command needed. To disable a pack you don't want, `rm -rf ~/.codex/skills/<prefix>-*` (e.g. `retail-*`).
 
 
 ## Core experts — 18
@@ -23,6 +23,122 @@
 - **toolbelt** — Reach for FAST CLI tools first instead of writing slow Python/grep one-offs. The
 - **ui-ux-engineer** — Distinctive, production-grade, taste-driven UI/UX engineering — the OPPOSITE of
 - **xlsx-wrangler** — Read, inspect, transform, and export large Excel (.xlsx) files WITHOUT loading
+
+## Algorithms & DSA (algo-*) — 26
+
+- **algo-arrays-strings** — Manipulate arrays and strings in-place — reversal, rotation, dedup, in-place writes — when memory matters or interviewers forbid extra space.
+- **algo-backtracking** — Backtracking for combinatorial generation and constraint search — permutations, combinations, subsets, N-Queens, Sudoku, word-search — with pruning.
+- **algo-binary-search** — Classic binary search on sorted data plus lower/upper-bound variants — find element, first/last occurrence, insertion point — in O(log n).
+- **algo-binary-search-on-answer** — Binary-search the answer space when checking feasibility is easy but computing the optimum is hard — min capacity, Koko bananas, split-array, allocation.
+- **algo-binary-search-trees** — Binary search trees — ordered insert/search/delete, validate-BST, inorder-successor, kth-smallest, range queries — and why balance matters.
+- **algo-bit-manipulation** — Bitwise tricks — masks, single-number XOR, count-bits, power-of-two checks, subset enumeration, lowest-set-bit — for O(1) state and tight inner loops.
+- **algo-complexity-analysis** — Big-O / time-space complexity analysis — amortized, recurrences, dominant terms, common traps — to predict scalability and pass complexity interview questions.
+- **algo-divide-and-conquer** — Divide-and-conquer — merge sort, quickselect, binary-search variants, max-subarray, count-inversions, the Master Theorem — split, solve, combine.
+- **algo-dynamic-programming** — Dynamic programming — 1D/2D states, knapsack, LIS, LCS/edit-distance, grid paths, coin-change — via state definition, recurrence, memo vs tabulation.
+- **algo-graph-bfs-dfs** — Graph traversal — BFS for shortest path in unweighted graphs, DFS for connectivity/components/cycle detection — on adjacency lists or grids.
+- **algo-greedy** — Greedy algorithms — interval scheduling, jump-game, gas-station, Huffman, fractional knapsack — and proving the local-optimal choice is globally optimal.
+- **algo-hashing-hashmaps** — Trade space for O(1) average lookup with hashmaps/sets — complement search, frequency counting, grouping, dedup, caching seen state.
+- **algo-heaps-priority-queue** — Binary heaps / priority queues — top-K, k-way merge, running median, Dijkstra's PQ, scheduling — with O(log n) push/pop and O(1) peek.
+- **algo-linked-lists** — Linked-list operations with pointer surgery — reverse, detect/remove cycle, merge, find middle, reorder — using dummy nodes and fast/slow pointers.
+- **algo-minimum-spanning-tree** — Minimum spanning tree — Kruskal (edge-sort + DSU) and Prim (grow via PQ) — for least-cost connection: networks, clustering, road/cable layout.
+- **algo-prefix-sums** — Prefix-sum / difference arrays for O(1) range queries and O(1) range updates — subarray-sum-equals-K, 2D submatrix sums, interval bumps.
+- **algo-recursion-fundamentals** — Reason about recursion correctly — base case, recursive case, the call stack, and recursion-to-iteration — to write provably-terminating recursive solutions.
+- **algo-shortest-paths** — Weighted shortest-path algorithms — Dijkstra, Bellman-Ford, Floyd-Warshall, 0-1 BFS — choosing by negative edges, single vs all-pairs, and edge weights.
+- **algo-sliding-window** — Sliding-window for contiguous subarray/substring problems — longest/shortest/at-most-K, fixed or variable size — in a single O(n) pass.
+- **algo-sorting-algorithms** — Sorting algorithms and when to use which — quicksort, merge sort, heapsort, Timsort, counting/radix sort — by stability, space, and data shape.
+- **algo-stacks-queues-monotonic** — Stacks, queues, and the monotonic-stack/deque pattern — valid-parens, next-greater-element, sliding-window-max, histogram, span — in amortized O(n).
+- **algo-topological-sort** — Topological ordering of a DAG — task/build scheduling, course prerequisites, dependency resolution, cycle detection — via Kahn's BFS or DFS post-order.
+- **algo-trees-traversals** — Binary-tree traversals and tree DFS/BFS — preorder/inorder/postorder, level-order, height/diameter, LCA, path sums — recursive and iterative.
+- **algo-tries** — Trie (prefix tree) for string sets — autocomplete, prefix search, word-dictionary with wildcards, longest-common-prefix, XOR-maximization via bit-tries.
+- **algo-two-pointers** — Two-pointer technique on sorted arrays/strings — pair-sum, dedup, partition, palindrome, merge — to drop O(n²) brute force to O(n).
+- **algo-union-find-dsu** — Union-Find / Disjoint Set Union for dynamic connectivity — connected components, Kruskal's MST, cycle detection in undirected graphs, account-merge, redundant-connection.
+
+## Machine learning (ml-*) — 25
+
+- **ml-anomaly-detection** — Detect outliers/novelties/fraud with Isolation Forest, LOF, one-class SVM, and statistical methods under extreme imbalance
+- **ml-calibration** — Calibrate predicted probabilities (Platt/isotonic) so outputs match true frequencies for thresholding, ranking, and decisions
+- **ml-classification-metrics** — Choose and interpret classification metrics (ROC-AUC, PR-AUC, F1, precision/recall) for the actual business cost
+- **ml-cross-validation** — Design leakage-free validation (k-fold, stratified, grouped, time-series) to estimate generalization honestly
+- **ml-decision-trees** — Build interpretable single decision trees for non-linear tabular splits and as the base learner for ensembles
+- **ml-density-hierarchical-clustering** — DBSCAN/HDBSCAN and hierarchical/agglomerative clustering for arbitrary-shape clusters, outlier detection, and unknown k
+- **ml-ensemble-methods** — Combine models via bagging, boosting, stacking, and voting to cut variance/bias and squeeze out final accuracy
+- **ml-feature-engineering** — Craft, encode, and transform raw columns into model-ready features — the highest-leverage step in tabular ML
+- **ml-feature-selection** — Reduce feature count via filter/wrapper/embedded methods to cut overfitting, speed inference, and improve interpretability
+- **ml-gradient-boosting** — Sequential boosted-tree ensembles (XGBoost/LightGBM/CatBoost) — the top performer for structured/tabular data
+- **ml-hyperparameter-tuning** — Search hyperparameter spaces efficiently with grid/random/Bayesian/Optuna + early stopping and pruning
+- **ml-imbalanced-data** — Handle skewed class distributions (fraud/churn/rare-event) so the minority class is actually learned, not ignored
+- **ml-kmeans-clustering** — Partition data into k clusters via k-means for customer segmentation, vector quantization, and unsupervised grouping
+- **ml-knn** — k-Nearest Neighbors instance-based classification/regression for local non-parametric patterns and quick baselines
+- **ml-linear-regression** — Fit and diagnose linear/OLS regression for continuous targets when relationships are roughly additive and interpretability matters
+- **ml-logistic-regression** — Binary/multiclass classification with calibrated probabilities and interpretable log-odds when you need a transparent linear classifier
+- **ml-model-interpretability** — Explain model predictions with SHAP, LIME, permutation importance, and PDP/ICE for trust, debugging, and compliance
+- **ml-naive-bayes** — Naive Bayes probabilistic classifiers — fast baselines for text/spam and high-dimensional sparse features
+- **ml-pca-dimensionality-reduction** — PCA and friends (t-SNE/UMAP) to compress features, remove multicollinearity, denoise, and visualize high-dimensional data
+- **ml-random-forest** — Bagged decision-tree ensemble for robust low-tuning tabular classification/regression with built-in variance reduction
+- **ml-recommender-systems** — Build recommendations via collaborative filtering, matrix factorization, content-based, and hybrid models with implicit/explicit feedback
+- **ml-regression-metrics** — Select and read regression error metrics (RMSE, MAE, MAPE, R²) matched to scale, outliers, and business meaning
+- **ml-regularization** — Apply L1/L2/ElasticNet penalties to control overfitting, induce sparsity, and stabilize coefficients in linear and other models
+- **ml-svm** — Support Vector Machines for max-margin classification/regression, strong in high-dimensional or small-sample problems with kernel non-linearity
+- **ml-time-series-forecasting** — Forecast temporal data with ARIMA/SARIMA, Prophet, ETS, and ML approaches — handling trend, seasonality, and stationarity
+
+## AI / LLM engineering (ai-*) — 24
+
+- **ai-agent-memory** — Give agents memory across turns and sessions: working vs episodic vs semantic memory, summarization buffers, vector recall, and write/forget policies — use when an agent must remember beyond one context window.
+- **ai-chain-of-thought** — Elicit step-by-step reasoning for math, logic, and multi-hop tasks via CoT, self-consistency voting, and reasoning-model controls — use when the model rushes to a wrong final answer.
+- **ai-chunking-strategies** — Split documents for retrieval without destroying meaning: size/overlap tuning, semantic and structure-aware chunking, and contextual retrieval — use when retrieved chunks are fragmented or context-less.
+- **ai-context-window-management** — Fit work into the context window and fight 'lost in the middle' / context rot: budgeting, summarization, retrieval over stuffing, and prompt/cache structuring — use on long docs, chats, or agent loops.
+- **ai-cost-latency-optimization** — Cut LLM cost and latency without wrecking quality: model right-sizing, prompt caching, batching, max-token caps, streaming, and distillation — use when bills or p95 latency are too high.
+- **ai-embeddings** — Turn text into vectors for semantic search, clustering, and dedup: model choice, dimensions, normalization, cosine similarity, and batching — use when you need meaning-based comparison, not keywords.
+- **ai-few-shot-prompting** — Steer format and behavior with in-context examples (k-shot) when zero-shot is inconsistent — covers example selection, ordering, and label balance to avoid majority-label bias.
+- **ai-fine-tuning-decision** — Decide IF and HOW to fine-tune (LoRA/QLoRA vs full vs prompt/RAG) and avoid the classic 'fine-tune when you should've RAG'd' mistake — use before committing to a training run.
+- **ai-function-tool-calling** — Wire LLMs to external actions via tool/function calling: schema design, the call→execute→result loop, parallel calls, and forced tool choice — use to let a model fetch data or take actions.
+- **ai-guardrails-safety** — Add input/output guardrails to an LLM app: content moderation, PII redaction, topic/scope restriction, schema validation, and a fallback chain — use before exposing an LLM to users or untrusted input.
+- **ai-hallucination-mitigation** — Reduce confident fabrication: grounding/RAG, citation enforcement, abstention thresholds, chain-of-verification, and self-consistency — use for any factual or high-stakes output.
+- **ai-image-generation** — Generate and edit images with diffusion/text-to-image models: prompt structure, negative prompts, img2img/inpainting, control (ControlNet/reference), and seeds — use to create or modify visuals programmatically.
+- **ai-llm-as-judge** — Use an LLM to grade outputs reliably: rubric design, pairwise vs pointwise, bias mitigation (position/verbosity/self-preference), and judge calibration — use to scale eval beyond humans.
+- **ai-llm-evals** — Build an offline eval harness for LLM systems: golden datasets, deterministic vs model-graded metrics, regression gates in CI — use before shipping any prompt/model change.
+- **ai-model-selection-routing** — Pick and route between LLMs by task: capability/cost/latency/context tradeoffs, prompt-based vs learned routers, cascades, and fallback chains — use to match each request to the cheapest model that can do it.
+- **ai-multimodal-vision** — Use vision LLMs for image understanding, OCR, document/chart extraction, and grounding: detail/resolution control, multi-image prompts, and structured extraction — use to read images, screenshots, or PDFs.
+- **ai-prompt-engineering** — Engineer reliable LLM prompts: role+task+constraints+format scaffolding, delimiter discipline, instruction placement, and iterative refinement — use when output is vague, inconsistent, or ignores constraints.
+- **ai-prompt-injection-defense** — Defend LLM apps against prompt injection and tool-misuse: untrusted-content isolation, instruction/data separation, least-privilege tools, and the dual-LLM/two-loop pattern — use whenever the model ingests external content.
+- **ai-rag-patterns** — Production RAG beyond naive retrieve-then-stuff: hybrid search, reranking, corrective/self-RAG, and query rewriting — use when naive RAG misses relevant docs or hallucinates over them.
+- **ai-semantic-caching** — Cache LLM responses by meaning, not exact string: embedding-similarity lookup, threshold tuning, TTL/invalidation, and the false-hit risk — use to cut cost/latency on repetitive or paraphrased queries.
+- **ai-speech-stt-tts** — Add speech to LLM apps — transcription (Whisper/STT), text-to-speech, streaming, diarization, and latency budgeting for voice agents — use to build voice interfaces or process audio.
+- **ai-streaming-responses** — Stream LLM output token-by-token for low perceived latency: SSE handling, partial-JSON/tool-call streaming, backpressure, and clean cancellation — use for any interactive or long-output UI.
+- **ai-structured-output** — Force valid JSON/typed output via JSON Schema, constrained decoding, and Pydantic validation — use whenever an LLM output feeds code instead of a human.
+- **ai-vector-search** — Build and query a vector index for similarity search: ANN algorithms (HNSW/IVF), distance metrics, metadata filtering, and recall tuning — use to retrieve nearest neighbors at scale.
+
+## Software eng + system design (sde-*) — 29
+
+- **sde-api-design-rest-grpc-graphql** — Pick and design the right API style - resource-oriented REST, contract-first gRPC, client-shaped GraphQL - with versioning and errors.
+- **sde-async-event-loops** — Master non-blocking I/O - the single-threaded event loop, async/await, futures, and not blocking the loop with CPU work.
+- **sde-back-of-envelope-estimation** — Compute QPS, storage, bandwidth, and memory budgets fast to size every component and justify design choices with numbers.
+- **sde-caching-strategies** — Apply cache-aside, write-through, write-back, write-around with correct invalidation, TTLs, and stampede protection.
+- **sde-cap-pacelc-theorem** — Reason about consistency vs availability under partitions (CAP) and the latency-vs-consistency tradeoff even without them (PACELC).
+- **sde-cdn-edge-delivery** — Serve static and cacheable content from edge PoPs - cache headers, TTL, purge, origin shielding, and dynamic edge logic.
+- **sde-ci-cd** — Automate build-test-deploy - fast pipeline stages, trunk-based flow, and safe rollout via blue-green/canary with rollback.
+- **sde-concurrency-locking** — Write correct concurrent code - races, mutexes, deadlock, optimistic vs pessimistic locking, and lock-free atomics.
+- **sde-database-indexing** — Speed reads with B-tree and hash indexes - composite key order, covering indexes, and the write-cost tradeoff.
+- **sde-debugging-method** — Debug systematically - reproduce, isolate via bisection/binary search, form and test hypotheses, fix root cause not symptom.
+- **sde-design-chat-system** — Design WhatsApp/Messenger - WebSocket connections, message store, online presence, fan-out, ordering, and delivery receipts.
+- **sde-design-key-value-store** — Design a distributed KV store like Dynamo - consistent hashing, replication, quorum, vector clocks, gossip, and tunable consistency.
+- **sde-design-news-feed** — Design a social feed - fan-out on write vs read, the celebrity hot-key problem, hybrid push/pull, ranking, and feed caching.
+- **sde-design-patterns-gof** — Reach for the right Gang-of-Four pattern - factory, strategy, observer, decorator, adapter, singleton - and know when not to.
+- **sde-design-rate-limiter-service** — Design a distributed rate-limiter service - algorithm choice, shared Redis counters, atomicity, and where to place it.
+- **sde-design-url-shortener** — Design TinyURL/bit.ly - short-key generation (base62, counter, hash), 301 vs 302 redirect, KV store, and read-heavy caching.
+- **sde-idempotency** — Make retries safe - idempotency keys, dedup stores, and designing operations that survive at-least-once delivery and client retries.
+- **sde-load-balancing** — Distribute traffic across servers - L4 vs L7, algorithms, health checks, and avoiding the LB as a single point of failure.
+- **sde-message-queues-event-driven** — Decouple services with queues and logs - Kafka vs RabbitMQ, delivery guarantees, consumer groups, ordering, and backpressure.
+- **sde-microservices-vs-monolith** — Choose between modular monolith and microservices - decomposition boundaries, the distributed-systems tax, and the migration path.
+- **sde-observability** — Make systems debuggable in prod - structured logs, RED/USE metrics, distributed traces, correlation IDs, and symptom-based alerts.
+- **sde-rate-limiting** — Throttle traffic to protect services - token bucket, leaky bucket, sliding window, distributed counters, and 429 semantics.
+- **sde-refactoring** — Improve code structure without changing behavior - small safe steps under test coverage, smell-driven, never mixed with features.
+- **sde-replication-consistency** — Replicate data for availability and read scale - leader-follower, replication lag, sync vs async, and quorum reads/writes.
+- **sde-scalability-horizontal-scaling** — Scale out with stateless services, vertical vs horizontal tradeoffs, and the path from single server to multi-tier fleet.
+- **sde-sharding-partitioning** — Split data across nodes by hash, range, or directory - shard-key choice, hot spots, resharding, and cross-shard query pain.
+- **sde-solid-principles** — Apply SOLID to keep OO code flexible - single responsibility, open-closed, Liskov, interface segregation, dependency inversion.
+- **sde-system-design-method** — Drive any system-design problem through the canonical 5-step flow: requirements, estimation, API, data model, then scale.
+- **sde-testing-strategy** — Build the test pyramid - fast unit, focused integration, few e2e - plus TDD red-green-refactor and what to mock at boundaries.
 
 ## PowerPoint (pptx-*) — 20
 
@@ -47,7 +163,7 @@
 - **pptx-typography-grid-layout** — Slide typography and layout systems — type scale, alignment grids, guides, Align/Distribute, optical spacing, and killing the centered-everything AI-slop look
 - **pptx-vba-automation** — Automate PowerPoint with VBA — batch-format slides, find/replace across a deck, export each slide, recolor shapes by theme, loop the object model (Slides/Shapes/TextRange)
 
-## Excel incl. xlsm (xls-*) — 26
+## Excel + xlsm (xls-*) — 26
 
 - **xls-array-formulas-legacy** — Legacy CSE array formulas vs modern dynamic arrays, implicit intersection @, array constants, SUMPRODUCT as array engine, migration
 - **xls-auditing-trace** — Formula auditing: trace precedents/dependents, evaluate formula, show formulas, error checking, range finder, find broken links and circular refs
@@ -170,3 +286,46 @@
 - **ba-storytelling-with-data** — Turn analysis into a persuasive data narrative (Knaflic/Duarte): context → conflict → resolution, preattentive focus, declarative chart titles, annotate the insight; strip chartjunk and cognitive load.
 - **ba-time-series-forecasting** — Forecast business series: decompose trend/seasonality, pick naive/MA/Holt-Winters/ARIMA/Prophet by data shape, hold out + backtest with MAPE/RMSE; avoid leakage and random-split on time data.
 - **ba-unit-economics** — Model unit economics: contribution margin, CAC, LTV (and LTV:CAC), payback period, cohort-based LTV; avoid revenue-not-margin LTV and blended-CAC vanity errors.
+
+## Productivity / time-mgmt (prod-*) — 20
+
+- **prod-deep-work** — Engineer distraction-free deep-work sessions (depth rituals, shutdown ritual, the 4 philosophies) for cognitively demanding output that creates disproportionate value
+- **prod-delegation** — Delegate effectively using levels-of-delegation, RACI ownership, and clear outcome/context handoffs to scale your output and develop others instead of bottlenecking
+- **prod-eisenhower-matrix** — Sort tasks by urgency x importance into the 4-quadrant Eisenhower matrix to escape reactive firefighting and protect quadrant-2 strategic work
+- **prod-energy-management** — Schedule work to your ultradian rhythm and chronotype (90-min cycles, peak/trough/recovery, strategic renewal) so you match task type to available energy not just time
+- **prod-focus-distraction-control** — Control distraction with environment design, notification hygiene, the distraction-capture pad, and Newport/Eyal indistractable tactics to protect sustained attention
+- **prod-gtd-workflow** — Run David Allen's GTD five-step flow (capture, clarify, organize, reflect, engage) to get a trusted, stress-free system when your head is full of open loops
+- **prod-habit-building** — Build durable habits with the cue-routine-reward loop and Atomic Habits laws (make it obvious/attractive/easy/satisfying), habit stacking, and the 2-day rule
+- **prod-inbox-zero** — Reach and hold inbox zero with the OHIO triage (delete/delegate/respond/defer), filters, the 2-minute rule, and scheduled batch processing
+- **prod-kanban-wip-limits** — Run a personal/team Kanban board with explicit WIP limits to visualize flow, expose bottlenecks, and finish work faster by limiting work-in-progress
+- **prod-meeting-hygiene** — Run lean meetings and default-to-async (clear purpose/agenda/DRI, decision logs, no-meeting blocks, RFC docs) to reclaim maker time and reduce synchronous overhead
+- **prod-note-taking-systems** — Build a second-brain note system with PARA organization and Zettelkasten atomic linked notes (CODE workflow, evergreen notes) for durable knowledge you can actually retrieve
+- **prod-okr-goal-setting** — Set and run quarterly OKRs (qualitative Objective + 3-5 measurable Key Results) with scoring and check-ins to align ambitious goals with measurable outcomes
+- **prod-pomodoro-technique** — Run the Pomodoro Technique (25/5 work-break cycles, interruption logging, estimation) to beat procrastination and make work-volume measurable
+- **prod-prioritization-frameworks** — Choose and apply the right prioritization scoring model (RICE, ICE, MoSCoW, Weighted Scoring, Value-vs-Effort) to rank competing work objectively
+- **prod-saying-no-boundaries** — Protect priorities by saying no well-positive-no technique, opportunity-cost framing, the Hell-Yeah-or-No filter, and pre-committed boundaries against overcommitment
+- **prod-single-tasking** — Replace multitasking with deliberate single-tasking-task-switching cost, monotasking blocks, and one-tab discipline-to cut error rates and finish work faster
+- **prod-smart-goals** — Convert vague intentions into SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound) with leading indicators so goals become trackable and actionable
+- **prod-time-blocking** — Design a time-blocked calendar (task batching, theme days, day-template) so every hour has an assigned job instead of an open-ended to-do list
+- **prod-two-minute-rule** — Apply the 2-minute rule two ways-do-it-now for sub-2-min tasks (GTD) and the start-small habit version (Atomic Habits)-to crush small-task buildup and procrastination
+- **prod-weekly-review** — Run a structured weekly review (clear, current, creative) to keep your task system trusted, reconcile calendar vs reality, and plan the week ahead
+
+## Career & interview (career-*) — 17
+
+- **career-ats-resume-engineering** — Build an ATS-parseable, recruiter-skimmable engineer resume with quantified impact bullets — use when writing or rewriting a resume for online applications.
+- **career-behavioral-interview-star** — Answer behavioral questions with tight STAR stories that show ownership, conflict, and impact — use to prep the 'tell me about a time' round and culture/values loops.
+- **career-coding-interview-execution** — Run the live coding interview itself — clarify, communicate, test, debug under time pressure — use the day-of to convert problem-solving into a hire signal.
+- **career-coding-interview-patterns** — Master the ~15 algorithm patterns that cover most coding interviews, with recognition triggers and complexity — use when prepping LeetCode-style technical screens.
+- **career-engineer-portfolio-building** — Build a portfolio (GitHub + project READMEs + live demos) that proves engineering judgment, not tutorial-following — use when you need credible projects to back a resume.
+- **career-impact-bullet-quantification** — Turn vague duties into metric-driven accomplishment bullets even when you lack clean numbers — use when bullets read as task lists with no measurable outcome.
+- **career-interview-debrief-iteration** — Systematically debrief each interview, diagnose the failing funnel stage, and iterate prep — use to convert rejections into a faster path to offers.
+- **career-job-search-funnel-strategy** — Run a metrics-driven job search as a sales funnel (sourcing→apply→screen→onsite→offer) with conversion targets and channel mix — use when applications get no responses.
+- **career-linkedin-optimization** — Optimize a LinkedIn profile for recruiter search ranking and inbound, plus content for visibility — use when recruiters aren't finding you or your profile gets no inbound.
+- **career-ml-ai-interview-prep** — Prep the ML/AI interview tracks — ML fundamentals, coding, ML system design, and LLM/applied-AI rounds — use when targeting MLE, AI engineer, or research-engineer roles.
+- **career-offer-evaluation** — Evaluate and compare job offers across comp, growth, team, role, and risk with a weighted framework — use when deciding between offers or whether to accept.
+- **career-recruiter-cold-outreach** — Write cold messages to recruiters, hiring managers, and referrers that get replies — use to source referrals and warm intros instead of cold-applying.
+- **career-salary-negotiation** — Negotiate a software/ML offer across base, equity, bonus, and sign-on using leverage, anchoring, and competing offers — use when you have an offer in hand.
+- **career-strategic-networking** — Build a professional network that generates referrals and intel through give-first relationships, communities, and warm intros — use to escape cold-apply dependence.
+- **career-system-design-building-blocks** — Know the canonical distributed-systems components and when each applies (caches, queues, sharding, replication, CDN, consensus) — use to back design choices with depth.
+- **career-system-design-interview** — Structure a system-design interview with a repeatable method (requirements→estimation→API→data→architecture→scale→tradeoffs) — use for senior/staff loops.
+- **career-take-home-project-strategy** — Maximize a take-home assignment with scoping, tests, README, and production-mindset signals while time-boxing — use when given a take-home or work-sample.

@@ -161,6 +161,21 @@ else
   say "✓ memory/LESSONS.md exists (untouched)"
 fi
 
+# --- 5c. reasoning effort default (high/xhigh only, never medium) — always ----
+# Top-level TOML keys must precede any [table], so PREPEND. Guard against dupes.
+CFG="$CODEX_HOME/config.toml"
+if [ -f "$CFG" ] && grep -qE '^[[:space:]]*model_reasoning_effort' "$CFG"; then
+  say "✓ config.toml already sets model_reasoning_effort (left as-is)"
+elif [ "$DRY" = 1 ]; then
+  say "  [dry-run] prepend model_reasoning_effort=high + plan_mode_reasoning_effort=xhigh"
+else
+  tmp="$(mktemp)"
+  printf '# CODEX-UPGRADE effort defaults (high/xhigh only — never medium)\nmodel_reasoning_effort = "high"\nplan_mode_reasoning_effort = "xhigh"\n\n' > "$tmp"
+  [ -f "$CFG" ] && cat "$CFG" >> "$tmp"
+  mv "$tmp" "$CFG"
+  say "✓ config.toml: model_reasoning_effort=high, plan_mode_reasoning_effort=xhigh"
+fi
+
 # --- 6. optional config merge -------------------------------------------------
 if [ "$WITH_CONFIG" = 1 ]; then
   if [ -f "$ASSETS/config.office.toml" ]; then

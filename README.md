@@ -32,6 +32,7 @@ failing silently.
 | `rag-engineer` | RAG done right — hybrid + rerank + eval (not cosine-and-pray) | none |
 | `agent-builder` | Production agentic systems (LangGraph/MCP/A2A, eval+observe) | none |
 | `data-engineer` | Idempotent ELT, no-OOM (dbt/SQLMesh/DuckDB/Polars/dlt) | none |
+| `claude-review` | **Cross-review**: Claude Opus 4.8 reviews the git diff (the verify gate) | none |
 
 Skills marked **deep** are *repo-grounded*: each one's `SKILL.md` carries a verified
 "absorb these repos" list (current best-in-class, with maintained/stale flags) + the
@@ -51,6 +52,13 @@ several expert lenses **in parallel** — each is an isolated `codex exec` worke
 (read-only, `--ephemeral`) — then synthesizes their findings. Portable (no MCP), uses
 plain `codex exec` rather than the flaky native `[agents]`. Keep lens lists tight —
 each lens is a full Codex session.
+
+**Global defaults (apply in EVERY project + new folder automatically — they live in
+`~/.codex`):** GSD on every task · **Claude Opus 4.8 reviews the code** at the verify
+gate (`claude-review`) · **reasoning effort high/xhigh only, never medium**
+(`model_reasoning_effort=high`, plan-mode `xhigh`) · context discipline (compact / JIT /
+`.planning/` scratchpad / respect context-rot). No per-project setup — `cd` into any
+repo and they're active.
 
 **Default methodology — the GSD loop (on by default, no command):** for any real
 work Codex runs **clarify what+why → (PRD for software) → your approval → phased plan

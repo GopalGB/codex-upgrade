@@ -22,6 +22,7 @@ for the full command list.
 | **rag-engineer** | RAG done right: hybrid+rerank+eval (repo-grounded) | — (playbook) | none |
 | **agent-builder** | Production agentic systems (repo-grounded) | — (playbook) | none |
 | **data-engineer** | Idempotent ELT, no-OOM (repo-grounded) | — (playbook) | none |
+| **claude-review** | Claude Opus 4.8 reviews the git diff (cross-review verify gate) | `bin/review.sh` | needs `claude` CLI + net |
 
 The five **repo-grounded** experts (ui-ux/research/rag/agents/data + deepened ml) each
 carry a verified, dated "absorb these repos" list with maintained/stale flags and the

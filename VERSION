@@ -1,16 +1,17 @@
-codex-upgrade 2.4.0
+codex-upgrade 2.5.0
 built 2026-06-18
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP (hooks optional)
-skills: 14 · prompts: 9
+skills: 15 · prompts: 9
 changelog:
-  2.4.0 — DEEP repo-grounded expert skills (researched + verified, not generic):
-          NEW ui-ux-engineer (anti-AI-slop), research-expert (methodology),
-          rag-engineer (hybrid+rerank+eval), agent-builder (production agentic),
-          data-engineer (idempotent ELT). DEEPENED ml-engineer (end-to-end AI/ML).
-          Each carries a verified "absorb these repos" list with maintained/stale flags.
-  2.3.0 — swarm skill + /prompts:swarm (parallel codex-exec fan-out), CI smoke-on-push,
-          MIT LICENSE, install.sh --user-agents-dir.
+  2.5.0 — GLOBAL defaults (live in ~/.codex → apply to every project + new folder,
+          no per-project setup): Claude Opus 4.8 reviews the code at the §C verify gate
+          (NEW claude-review skill) · GSD on every task autonomously · reasoning effort
+          high/xhigh only, never medium (config model_reasoning_effort=high, plan=xhigh)
+          · §N context discipline (compact/JIT/.planning scratchpad/context-rot).
+  2.4.0 — DEEP repo-grounded expert skills: ui-ux-engineer, research-expert, rag-engineer,
+          agent-builder, data-engineer + deepened ml-engineer (verified "absorb" repo lists).
+  2.3.0 — swarm (parallel codex-exec fan-out), CI smoke-on-push, MIT LICENSE, --user-agents-dir.
   2.2.0 — optional Codex hooks (--with-hooks), /prompts:verify, tests/smoke.sh.
   2.1.0 — GSD default loop + LESSONS.md wtf-log + reuse-don't-regenerate + security layers.
   2.0.0 — initial kit: 8 expert skills, 5 prompts, AGENTS.md law, no-MCP installer.

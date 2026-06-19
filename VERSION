@@ -1,17 +1,16 @@
-codex-upgrade 2.6.0
+codex-upgrade 3.0.0
 built 2026-06-19
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP (hooks optional)
-skills: 18 · prompts: 9
+skills: 147 (18 core + 129 library) · prompts: 9
 changelog:
-  2.6.0 — GAP-fill scout (anti-bloat ranked): +security-auditor (gitleaks/semgrep/osv/
-          pip-audit — gives §H teeth, runs at verify gate beside claude-review),
-          +toolbelt (prefer rg/jq/pandoc/duckdb/mlr + ast-grep/fd/yq over scripts),
-          +doc-forge (DOCX + pandoc convert + OCR for scanned patents; MIT markitdown,
-          no AGPL). Codex 0.134 inline-profile breaking-change documented. db-expert
-          DEFERRED to hold the anti-bloat line. (rejected: comby, marker/docling, plugin dist.)
-  2.5.0 — GLOBAL defaults: Opus 4.8 review at verify · GSD every task · context discipline
-          · reasoning effort high/xhigh only (config-enforced).
+  3.0.0 — SKILL LIBRARY: +129 deep sub-skills generated from a verified catalog —
+          pptx (20), xls/xlsm (26), vba (20), retail (25), research (22), ba (16).
+          Namespaced (pptx-*/xls-*/vba-*/retail-*/research-*/ba-*); each ~1.4k-char
+          real how-to (functions/formulas/methods + pitfalls), not filler. Index at
+          docs/SKILL-LIBRARY.md; generator at lib/gen_skills.py. 147 skills, all validate.
+  2.6.0 — security-auditor + toolbelt + doc-forge (gap-fill, anti-bloat ranked).
+  2.5.0 — GLOBAL defaults: Opus review · GSD every task · context discipline · high/xhigh effort.
   2.4.0 — DEEP repo-grounded experts: ui-ux/research/rag/agents/data + deepened ml.
   2.3.0 — swarm (parallel codex-exec), CI smoke-on-push, MIT LICENSE, --user-agents-dir.
   2.2.0 — optional Codex hooks (--with-hooks), /prompts:verify, tests/smoke.sh.

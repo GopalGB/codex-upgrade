@@ -39,6 +39,23 @@ failing silently.
 
 <sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
+### Skill library — 129 deep sub-skills (v3.0)
+On top of the 18 core experts, a namespaced library covers your office work in depth
+(**147 skills total**). Codex auto-triggers them by description — no command needed.
+Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
+
+| Pack | Count | Covers |
+|---|---|---|
+| `pptx-*` | 20 | slide masters, themes, native+data-driven charts, tables, SmartArt, morph, accessibility, export, PPT-VBA |
+| `xls-*` | 26 | XLOOKUP/dynamic arrays/LAMBDA, pivots, Power Query, Power Pivot/DAX, dashboards, big-file perf, xlsm |
+| `vba-*` | 20 | UDFs, UserForms, events, fast array I/O, class modules, ADO/SQL, RegExp, add-in deploy, signing |
+| `retail-*` | 25 | OTB, assortment, demand forecasting, markdown/pricing, GMROI, RFM/CLV, basket analysis, planograms |
+| `research-*` | 22 | systematic review/PRISMA, survey design, stats, regression, A/B + power, meta-analysis, synthesis |
+| `ba-*` | 16 | dashboards, chart selection, SQL, cohort/funnel, forecasting, financial analysis, data storytelling |
+
+Each carries real expert how-to (median ~1.4k chars: actual functions, formulas, methods,
+pitfalls) — generated from a verified catalog, not filler.
+
 Skills marked **deep** are *repo-grounded*: each one's `SKILL.md` carries a verified
 "absorb these repos" list (current best-in-class, with maintained/stale flags) + the
 expert-vs-generic gaps — not generic advice.

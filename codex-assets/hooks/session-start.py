@@ -29,16 +29,31 @@ def _count_lessons(path: str) -> int:
         return 0
 
 
+def _count_cards(cards_dir: str) -> int:
+    try:
+        return sum(1 for f in os.listdir(cards_dir) if f.endswith(".md"))
+    except OSError:
+        return 0
+
+
 def main() -> int:
     try:
         sys.stdin.read()  # drain payload; we don't need its fields
-        lessons = _count_lessons(os.path.join(_codex_home(), "memory", "LESSONS.md"))
+        home = _codex_home()
+        lessons = _count_lessons(os.path.join(home, "memory", "LESSONS.md"))
+        cards = _count_cards(os.path.join(home, "memory", "cards"))
+        recall = (
+            f' {cards} memory cards stored — `memory.py recall "<query>"` to pull the '
+            "top-k relevant ones (context-safe); `add` durable facts after."
+            if cards
+            else " Use the memory-keeper skill (`memory.py add/recall`) for durable facts."
+        )
         msg = (
             "CODEX UPGRADE active. Default method (AGENTS.md §C): trivial work → just "
             "do it; real work → clarify WHAT+WHY → approval → phased plan → approval → "
             "one phase at a time → verify; software/irreversible → /prompts:prd first. "
             f"Read LESSONS.md before non-trivial work ({lessons} lessons loaded) and log "
-            "a new one on any frustration signal (§F)."
+            "a new one on any frustration signal (§F)." + recall
         )
         print(
             json.dumps(

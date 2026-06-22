@@ -36,12 +36,17 @@ failing silently.
 | `security-auditor` | Secret scan + SAST + dep-audit (gitleaks/semgrep/osv/pip-audit) | none* |
 | `toolbelt` | Prefer fast CLI tools (rg/jq/pandoc/duckdb + ast-grep/fd/yq) over scripts | none* |
 | `doc-forge` | DOCX + universal convert (pandoc) + OCR for scanned PDFs/patents | pandoc/ocrmypdf |
+| `ponytail` | **Minimal-code**: climb the laziness ladder — the least code that works (also §Q law) | none |
+| `memory-keeper` | **Long-term memory**: queryable markdown cards, top-k recall, context-safe, no MCP | **none — stdlib** |
+| `tdd-engineer` | Test-first discipline — red→green→refactor, fakes>mocks, property/characterization tests | none |
+| `git-flow` | Everyday git craft — atomic commits, rebase/bisect, reflog recovery, worktrees | none |
+| `sql-pro` | SQL query craft — read EXPLAIN, indexing strategy, kill N+1, injection-safe | none* |
 
 <sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
 ### Skill library — 372 deep sub-skills (v3.2)
-On top of the 18 core experts, a namespaced library covers your work in depth
-(**390 skills total**). Codex auto-triggers them by description — no command needed.
+On top of the 23 core experts, a namespaced library covers your work in depth
+(**395 skills total**). Codex auto-triggers them by description — no command needed.
 Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 
 | Pack | # | Covers |

@@ -1,9 +1,9 @@
-# Codex Upgrade — Skill Library Index (390 skills)
+# Codex Upgrade — Skill Library Index (395 skills)
 
 > Codex auto-triggers by description; no command needed. Disable a pack: `rm -rf ~/.codex/skills/<prefix>-*`.
 
 
-## Core experts (core-*) — 18
+## Core experts (core-*) — 23
 
 - **agent-builder** — Build PRODUCTION agentic systems — design for the failure path, eval + observe from
 - **claude-review** — Get an independent Claude Opus 4.8 code review of the current git diff — the
@@ -11,15 +11,20 @@
 - **deck-smith** — Read and GENERATE PowerPoint (.pptx) decks without MCP, via python-pptx. Use
 - **doc-forge** — Word/DOCX, universal document conversion, and OCR for SCANNED PDFs (patents,
 - **expert-hire** — Meta-skill: when a task needs expertise the current skills do not cover, FIND
+- **git-flow** — Everyday git craft for a coding agent — atomic Conventional commits, rebase, bisect,
+- **memory-keeper** — Durable long-term memory across sessions WITHOUT a vector DB, server, or MCP — markdown
 - **ml-engineer** — Deep, end-to-end ML / AI engineering — data → train/fine-tune → eval → quantize →
 - **patent-scout** — Search US patents and do prior-art sweeps without MCP. Primary source is the
 - **pdf-extract** — Extract text, tables, and LLM-ready markdown from PDF files without MCP. Use
+- **ponytail** — The minimal-code discipline — climb the laziness ladder before writing code (YAGNI →
 - **py-pro** — Expert Python engineering discipline for production-grade code - structure,
 - **rag-engineer** — Retrieval-Augmented Generation done RIGHT — hybrid search + reranking + real eval,
 - **research-expert** — Deep research METHODOLOGY (decompose → multi-source → triangulate → adversarially
 - **research-scout** — Literature and prior-art research from FREE, keyless APIs (arXiv, OpenAlex,
 - **security-auditor** — Run the security gate — secret scanning, SAST, and dependency-vuln audit — using
+- **sql-pro** — Expert SQL query craft — fast, correct, injection-safe queries: read EXPLAIN, index,
 - **swarm** — Fan ONE task across multiple expert lenses IN PARALLEL — a swarm of isolated
+- **tdd-engineer** — Test-driven development discipline — red→green→refactor, fakes over mocks, property
 - **toolbelt** — Reach for FAST CLI tools first instead of writing slow Python/grep one-offs. The
 - **ui-ux-engineer** — Distinctive, production-grade, taste-driven UI/UX engineering — the OPPOSITE of
 - **xlsx-wrangler** — Read, inspect, transform, and export large Excel (.xlsx) files WITHOUT loading

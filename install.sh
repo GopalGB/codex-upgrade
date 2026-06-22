@@ -62,7 +62,7 @@ say ""
 [ -d "$ASSETS" ] || { echo "ERROR: $ASSETS not found - run from the repo root."; exit 1; }
 
 # --- 0. dirs + backup ---------------------------------------------------------
-run "mkdir -p '$SKILLS_ROOT' '$CODEX_HOME/prompts' '$CODEX_HOME/memory' '$BACKUP'"
+run "mkdir -p '$SKILLS_ROOT' '$CODEX_HOME/prompts' '$CODEX_HOME/memory' '$CODEX_HOME/memory/cards' '$BACKUP'"
 if [ -f "$CODEX_HOME/AGENTS.md" ]; then run "cp '$CODEX_HOME/AGENTS.md' '$BACKUP/AGENTS.md'"; fi
 if [ -f "$CODEX_HOME/config.toml" ]; then run "cp '$CODEX_HOME/config.toml' '$BACKUP/config.toml'"; fi
 if [ -f "$CODEX_HOME/memory/LESSONS.md" ]; then run "cp '$CODEX_HOME/memory/LESSONS.md' '$BACKUP/LESSONS.md'"; fi
@@ -227,4 +227,5 @@ say "⚠ RESTART Codex now — skills + prompts are only re-scanned at session s
 say "Verify:    codex  →  /skills     (lists xlsx-wrangler, deck-smith, pdf-extract, …)"
 say "Prompts:   /prompts:absorb  (tailor experts to a repo) · /prompts:oracle · /prompts:council"
 say "Smoke test: python3 '$SKILLS_ROOT/research-scout/bin/research.py' search 'rag eval' --source arxiv --n 3"
+say "Memory:    python3 '$SKILLS_ROOT/memory-keeper/bin/memory.py' selftest   (then: add / recall — long-term memory)"
 say "Rollback:  your previous config is in $BACKUP"

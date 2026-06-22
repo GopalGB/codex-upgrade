@@ -1,9 +1,15 @@
-codex-upgrade 3.3.0
-built 2026-06-19
+codex-upgrade 3.4.0
+built 2026-06-22
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP, USER-LEVEL (no admin), sandbox-safe
-skills: 390 (18 core + 372 library) · prompts: 9 · law v2.8
+skills: 395 (23 core + 372 library) · prompts: 9 · law v2.9
 changelog:
+  3.4.0 — ponytail (minimal-code skill + AGENTS.md §Q always-on law) + memory-keeper
+          (file-based LONG-TERM MEMORY: queryable markdown cards, top-k recall by
+          keyword×recency×importance, stdlib-only, context-safe — never floods the
+          window) + 3 core experts: tdd-engineer, git-flow, sql-pro. §F wired to
+          memory.py recall/add; session-start surfaces the card count. Core 18→23,
+          total 390→395, law v2.8→v2.9. Skill-metadata footprint stays ~2% (tight descs).
   3.3.0 — USER-LEVEL / NO-ADMIN hardening. Audit: zero sudo/system-path/elevation anywhere.
           All installs go to ~/.codex, tools-venv, or ~/.local/bin (uv tool / pip --user);
           brew is OPTIONAL, never required. New lib/install-tools.sh = no-admin optional-CLI

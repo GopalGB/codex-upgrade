@@ -1,9 +1,17 @@
-codex-upgrade 3.3.0
-built 2026-06-19
+codex-upgrade 3.4.0
+built 2026-06-29
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP, USER-LEVEL (no admin), sandbox-safe
-skills: 390 (18 core + 372 library) · prompts: 9 · law v2.8
+skills: 364 (19 core + 345 library) · prompts: 9 · law v2.8
 changelog:
+  3.4.0 — Office curation. Removed career-* (resume/ATS, interview prep, job search,
+          negotiation, networking — 17) and algo-* (DSA/LeetCode interview prep — 26):
+          personal, not office work (−43). Added the ponytail minimalism skill ("the best
+          code is the code you never wrote") + a craft-* agent-discipline pack (+17 total):
+          TDD red-green, surgical diffs, verify-before-done, no-hallucinated-APIs,
+          read-before-edit, fail-loud, git-safety, handoff notes, domain-modeling,
+          pushback-not-sycophancy, research-first, no-premature-abstraction, self-review,
+          vertical-slice, comment-why, delete-dead-code.
   3.3.0 — USER-LEVEL / NO-ADMIN hardening. Audit: zero sudo/system-path/elevation anywhere.
           All installs go to ~/.codex, tools-venv, or ~/.local/bin (uv tool / pip --user);
           brew is OPTIONAL, never required. New lib/install-tools.sh = no-admin optional-CLI

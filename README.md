@@ -40,9 +40,9 @@ failing silently.
 
 <sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
-### Skill library — 345 deep sub-skills (v3.4)
+### Skill library — 363 deep sub-skills (v3.5)
 On top of the 19 core experts, a namespaced library covers your work in depth
-(**364 skills total**). Codex auto-triggers them by description — no command needed.
+(**382 skills total**). Codex auto-triggers them by description — no command needed.
 Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 
 | Pack | # | Covers |
@@ -56,6 +56,7 @@ Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 | `m365-*` | 17 | M365 + Microsoft Graph: auth/scopes, SharePoint, Teams, Outlook, Office Scripts |
 | `ml-*` | 25 | regression, trees, boosting, SVM, clustering, PCA, CV, tuning, metrics, time-series, SHAP |
 | `ai-*` | 24 | prompting, CoT, structured output, RAG patterns, fine-tune, evals, guardrails, multimodal, cost |
+| `agentic-*` | 18 | **Building agentic software**: agent-vs-workflow, prompt-chaining/routing/parallelization, orchestrator-workers, evaluator-optimizer, sub-agent + tool + skill design, context engineering, state durability, MCP, eval/tracing, least-privilege, app architecture |
 | `sde-*` | 29 | system design, scalability, caching, sharding, queues, SOLID, patterns, concurrency, CI/CD, interviews |
 | `pptx-*` | 20 | slide masters, themes, charts, SmartArt, morph, accessibility, export, PPT-VBA |
 | `xls-*` | 26 | XLOOKUP/dynamic arrays/LAMBDA, pivots, Power Query, Power Pivot/DAX, dashboards, xlsm |

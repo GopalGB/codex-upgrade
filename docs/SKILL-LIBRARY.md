@@ -1,4 +1,4 @@
-# Codex Upgrade — Skill Library Index (364 skills)
+# Codex Upgrade — Skill Library Index (382 skills)
 
 > Codex auto-triggers by description; no command needed. Disable a pack: `rm -rf ~/.codex/skills/<prefix>-*`.
 
@@ -113,6 +113,27 @@
 - **ai-streaming-responses** — Stream LLM output token-by-token for low perceived latency: SSE handling, partial-JSON/tool-call streaming, backpressure, and clean cancellation — use for any interactive or long-output UI.
 - **ai-structured-output** — Force valid JSON/typed output via JSON Schema, constrained decoding, and Pydantic validation — use whenever an LLM output feeds code instead of a human.
 - **ai-vector-search** — Build and query a vector index for similarity search: ANN algorithms (HNSW/IVF), distance metrics, metadata filtering, and recall tuning — use to retrieve nearest neighbors at scale.
+
+## Building agentic software (agentic-*) — 18
+
+- **agentic-agent-vs-workflow** — Choose a deterministic workflow vs an autonomous agent — predictability/cost/testability vs flexibility; start simplest, add agency only when the steps can't be predicted.
+- **agentic-prompt-chaining** — Decompose into a fixed sequence of LLM calls with programmatic gates between steps; trade latency for per-step accuracy — the simplest reliable workflow.
+- **agentic-routing** — Classify the input and dispatch to a specialized prompt/model/handler; separation of concerns + cost tiering, with an explicit 'other/unsure' default.
+- **agentic-parallelization** — Run subtasks concurrently — sectioning (independent parts) or voting (same task N times, aggregate) — to cut wall-clock latency or raise confidence/coverage.
+- **agentic-orchestrator-workers** — A lead agent decomposes a task at runtime, dispatches to worker sub-agents in isolated contexts, and synthesizes — for open-ended work whose subtasks you can't predict.
+- **agentic-evaluator-optimizer** — Loop a generator and an evaluator — produce, critique against grounded criteria, refine until it passes — bounded by a max-iteration cap; use real checks over LLM-judge.
+- **agentic-subagent-design** — Design focused sub-agents: single responsibility, explicit input/output contract, isolated context, least-privilege tools, distilled structured returns.
+- **agentic-tool-design** — Design the agent-computer interface (ACI): clear names/types/descriptions, poka-yoke, structured actionable errors, right-sized outputs; test with agent-shaped inputs.
+- **agentic-skill-authoring** — Write effective skills/instructions: description as the trigger signal, progressive disclosure, one capability per skill, concrete imperative how-to.
+- **agentic-context-engineering** — Treat context as a finite, degrading budget: just-in-time retrieval over stuffing, compaction, external memory, sub-agent isolation; fight context rot.
+- **agentic-state-durability** — Make long runs durable: checkpoint to external storage, idempotent resumable steps, idempotency keys for side effects; test the kill-and-resume path.
+- **agentic-human-in-the-loop** — Gate consequential/irreversible actions behind approval, escalate on uncertainty, present a tight decision surface; pair with durable pause/resume.
+- **agentic-mcp-tools-integration** — Connect agents to tools/data via MCP (servers exposing tools/resources/prompts over stdio/HTTP); reuse existing servers, build custom for your own systems, treat as a security boundary.
+- **agentic-failure-recovery** — Resilient loops: retry+backoff on idempotent transients, fallback chains, error-reflection, bounded iterations/cost, fail loud into the trace.
+- **agentic-eval-and-tracing** — Evaluate agents on end-state + trajectory, trace runs as spans (calls/tools/tokens/latency), gate changes behind a CI regression eval.
+- **agentic-cost-budgeting** — Control cost/latency: per-role model routing, sub-agent token budgets, prompt-cache the stable prefix, trim outputs, cost-per-task as a first-class metric.
+- **agentic-permissions-least-privilege** — Scope agents to least-privilege tools, sandbox execution, isolate untrusted content (prompt-injection), confirm destructive actions, scoped short-lived creds.
+- **agentic-app-architecture** — Architect an agentic app end-to-end: core loop (context→act→verify), decoupled model/tool/state/orchestration layers, observability + eval-gate + guardrails from day one.
 
 ## Software eng + system design (sde-*) — 29
 

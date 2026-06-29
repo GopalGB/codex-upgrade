@@ -1,9 +1,15 @@
-codex-upgrade 3.4.0
+codex-upgrade 3.5.0
 built 2026-06-29
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP, USER-LEVEL (no admin), sandbox-safe
-skills: 364 (19 core + 345 library) · prompts: 9 · law v2.8
+skills: 382 (19 core + 363 library) · prompts: 9 · law v2.8
 changelog:
+  3.5.0 — +18 agentic-* pack: building agentic software — agent-vs-workflow, the workflow
+          patterns (prompt-chaining/routing/parallelization/orchestrator-workers/
+          evaluator-optimizer), subagent + tool + skill design, context-engineering,
+          state-durability, human-in-the-loop, MCP integration, failure-recovery,
+          eval-and-tracing, cost-budgeting, least-privilege permissions, app-architecture.
+          Grounded in canonical agent-building patterns. (364 → 382 skills.)
   3.4.0 — Office curation. Removed career-* (resume/ATS, interview prep, job search,
           negotiation, networking — 17) and algo-* (DSA/LeetCode interview prep — 26):
           personal, not office work (−43). Added the ponytail minimalism skill ("the best

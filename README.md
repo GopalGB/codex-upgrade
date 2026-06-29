@@ -36,25 +36,27 @@ failing silently.
 | `security-auditor` | Secret scan + SAST + dep-audit (gitleaks/semgrep/osv/pip-audit) | none* |
 | `toolbelt` | Prefer fast CLI tools (rg/jq/pandoc/duckdb + ast-grep/fd/yq) over scripts | none* |
 | `doc-forge` | DOCX + universal convert (pandoc) + OCR for scanned PDFs/patents | pandoc/ocrmypdf |
+| `ponytail` | **Minimalism**: write less code — the YAGNI→reuse→stdlib→native→one-line decision ladder | none |
 
 <sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
-### Skill library — 372 deep sub-skills (v3.2)
-On top of the 18 core experts, a namespaced library covers your work in depth
-(**390 skills total**). Codex auto-triggers them by description — no command needed.
+### Skill library — 363 deep sub-skills (v3.5)
+On top of the 19 core experts, a namespaced library covers your work in depth
+(**382 skills total**). Codex auto-triggers them by description — no command needed.
 Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 
 | Pack | # | Covers |
 |---|---|---|
 | `gsd-*` | 12 | **GSD methodology**: new-project→spec→plan→execute→verify→ship + debug/map/progress ([docs/GSD.md](docs/GSD.md)) |
+| `craft-*` | 16 | **Agent discipline** (ponytail-style): TDD red-green, surgical diffs, verify-before-done, no-hallucinated-APIs, read-before-edit, fail-loud, git-safety, domain-modeling, self-review |
 | `pbi-*` | 23 | Power BI: DAX/CALCULATE, time-intelligence, Power Query M, modeling, RLS, performance |
 | `pa-*` | 20 | Power Automate: flows, triggers, expressions, error handling, RPA/desktop flows, ALM |
 | `copilot-*` | 15 | Copilot Studio: topics, entities, actions, generative answers, M365 declarative agents |
 | `papps-*` | 15 | Power Apps: Power Fx, galleries/forms, delegation, Dataverse, model-driven |
 | `m365-*` | 17 | M365 + Microsoft Graph: auth/scopes, SharePoint, Teams, Outlook, Office Scripts |
-| `algo-*` | 26 | DSA: two-pointers, sliding-window, binary-search, graphs, DP, greedy, tries, complexity |
 | `ml-*` | 25 | regression, trees, boosting, SVM, clustering, PCA, CV, tuning, metrics, time-series, SHAP |
 | `ai-*` | 24 | prompting, CoT, structured output, RAG patterns, fine-tune, evals, guardrails, multimodal, cost |
+| `agentic-*` | 18 | **Building agentic software**: agent-vs-workflow, prompt-chaining/routing/parallelization, orchestrator-workers, evaluator-optimizer, sub-agent + tool + skill design, context engineering, state durability, MCP, eval/tracing, least-privilege, app architecture |
 | `sde-*` | 29 | system design, scalability, caching, sharding, queues, SOLID, patterns, concurrency, CI/CD, interviews |
 | `pptx-*` | 20 | slide masters, themes, charts, SmartArt, morph, accessibility, export, PPT-VBA |
 | `xls-*` | 26 | XLOOKUP/dynamic arrays/LAMBDA, pivots, Power Query, Power Pivot/DAX, dashboards, xlsm |
@@ -63,7 +65,6 @@ Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 | `research-*` | 22 | systematic review/PRISMA, survey design, stats, regression, A/B + power, meta-analysis |
 | `ba-*` | 16 | dashboards, chart selection, SQL, cohort/funnel, forecasting, financial analysis, storytelling |
 | `prod-*` | 20 | GTD, Eisenhower, time-blocking, deep work, OKRs, prioritization, habits, inbox-zero |
-| `career-*` | 17 | resume/ATS, portfolio, coding + system-design + behavioral interviews, negotiation, outreach |
 
 Each carries real expert how-to (median ~1.4k chars: actual functions, formulas, methods,
 pitfalls), generated from verified catalogs. **Don't want a pack?** `rm -rf ~/.codex/skills/<prefix>-*`.

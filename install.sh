@@ -31,7 +31,7 @@ for arg in "$@"; do
     --with-hooks) WITH_HOOKS=1 ;;
     --user-agents-dir) AGENTS_DIR=1 ;;
     --help|-h)
-      sed -n '2,20p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
+      sed -n '2,16p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown flag: $arg (try --help)"; exit 2 ;;
   esac
 done
@@ -221,7 +221,7 @@ fi
 # --- done ---------------------------------------------------------------------
 say ""
 line
-say " DONE${DRY:+}$( [ "$DRY" = 1 ] && echo ' (dry run — nothing changed)')"
+say " DONE$( [ "$DRY" = 1 ] && echo ' (dry run — nothing changed)')"
 line
 say "⚠ RESTART Codex now — skills + prompts are only re-scanned at session start."
 say "Verify:    codex  →  /skills     (lists xlsx-wrangler, deck-smith, pdf-extract, …)"

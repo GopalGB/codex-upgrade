@@ -24,6 +24,7 @@ for the full command list.
 | **data-engineer** | Idempotent ELT, no-OOM (repo-grounded) | — (playbook) | none |
 | **claude-review** | Claude Opus 4.8 reviews the git diff (cross-review verify gate) | `bin/review.sh` | needs `claude` CLI + net |
 | **security-auditor** | Secret scan + SAST + dep-audit, run-what's-installed | `bin/audit.sh` | gitleaks/semgrep/osv/uvx |
+| **production-audit** | Exhaustive 24-lens audit → verified file:line findings (+ fix mode) | — (methodology + `references/`) | none |
 | **toolbelt** | Prefer fast CLI tools over hand-rolled scripts (decision table) | — (playbook) | rg/jq/pandoc/duckdb +ast-grep |
 | **doc-forge** | DOCX + pandoc convert + OCR (scanned PDFs/patents) | `bin/doc.py` | pandoc/ocrmypdf + markitdown |
 
@@ -37,7 +38,7 @@ expert-vs-generic gaps — researched, not guessed. Re-verify repo currency peri
   `python3 ~/.codex/skills/<skill>/bin/<script>.py ...`.
 - **Prompts** are explicit: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`,
   `/prompts:council`, `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`,
-  `/prompts:verify`, `/prompts:swarm`.
+  `/prompts:verify`, `/prompts:swarm`, `/prompts:audit`.
 - After installing or editing skills/prompts, **restart Codex** (re-scan happens at
   session start only).
 

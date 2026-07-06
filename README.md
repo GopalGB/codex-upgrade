@@ -34,15 +34,16 @@ failing silently.
 | `data-engineer` | Idempotent ELT, no-OOM (dbt/SQLMesh/DuckDB/Polars/dlt) | none |
 | `claude-review` | **Cross-review**: Claude Opus 4.8 reviews the git diff (the verify gate) | none |
 | `security-auditor` | Secret scan + SAST + dep-audit (gitleaks/semgrep/osv/pip-audit) | none* |
+| `production-audit` | **Exhaustive audit**: 24-lens converge-until-clean, every finding proven at file:line, + fix mode | none |
 | `toolbelt` | Prefer fast CLI tools (rg/jq/pandoc/duckdb + ast-grep/fd/yq) over scripts | none* |
 | `doc-forge` | DOCX + universal convert (pandoc) + OCR for scanned PDFs/patents | pandoc/ocrmypdf |
 | `ponytail` | **Minimalism**: write less code — the YAGNI→reuse→stdlib→native→one-line decision ladder | none |
 
 <sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
-### Skill library — 363 deep sub-skills (v3.5)
-On top of the 19 core experts, a namespaced library covers your work in depth
-(**382 skills total**). Codex auto-triggers them by description — no command needed.
+### Skill library — 363 deep sub-skills (v3.6)
+On top of the 20 core experts, a namespaced library covers your work in depth
+(**383 skills total**). Codex auto-triggers them by description — no command needed.
 Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 
 | Pack | # | Covers |
@@ -80,7 +81,7 @@ falls back to manual links + academic prior-art when absent — never fakes resu
 **Slash prompts** (in `codex-assets/prompts/`) — invoked as `/prompts:<name>` in
 Codex: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`, `/prompts:council`,
 `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`, `/prompts:verify`,
-`/prompts:swarm`.
+`/prompts:swarm`, `/prompts:audit`.
 
 **Swarm (multi-agent):** `/prompts:swarm` or the `swarm` skill fans one task across
 several expert lenses **in parallel** — each is an isolated `codex exec` worker

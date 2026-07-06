@@ -1,9 +1,14 @@
-codex-upgrade 3.5.0
+codex-upgrade 3.6.0
 built 2026-06-29
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP, USER-LEVEL (no admin), sandbox-safe
-skills: 382 (19 core + 363 library) · prompts: 9 · law v2.8
+skills: 383 (20 core + 363 library) · prompts: 10 · law v2.8
 changelog:
+  3.6.0 — +production-audit core skill (ported from apoorvjain25/production-audit):
+          exhaustive 24-lens production-readiness audit, converge-until-clean, every
+          finding verified against file:line, with a fix mode (severity waves + re-verify).
+          Adds /prompts:audit. Dogfooded: ran it on the kit's scripts and fixed the
+          verified findings. (382 → 383 skills, 9 → 10 prompts.)
   3.5.0 — +18 agentic-* pack: building agentic software — agent-vs-workflow, the workflow
           patterns (prompt-chaining/routing/parallelization/orchestrator-workers/
           evaluator-optimizer), subagent + tool + skill design, context-engineering,

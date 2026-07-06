@@ -1,9 +1,9 @@
-# Codex Upgrade — Skill Library Index (382 skills)
+# Codex Upgrade — Skill Library Index (383 skills)
 
 > Codex auto-triggers by description; no command needed. Disable a pack: `rm -rf ~/.codex/skills/<prefix>-*`.
 
 
-## Core experts (core-*) — 19
+## Core experts (core-*) — 20
 
 - **agent-builder** — Build PRODUCTION agentic systems — design for the failure path, eval + observe from
 - **claude-review** — Get an independent Claude Opus 4.8 code review of the current git diff — the
@@ -15,6 +15,7 @@
 - **patent-scout** — Search US patents and do prior-art sweeps without MCP. Primary source is the
 - **pdf-extract** — Extract text, tables, and LLM-ready markdown from PDF files without MCP. Use
 - **ponytail** — Minimalism / "the best code is the code you never wrote": the YAGNI→reuse→stdlib→native→existing-dep→one-line decision ladder — ship the shortest correct diff, no speculative abstractions. Use on every build/edit.
+- **production-audit** — Exhaustive production-readiness audit: sweep 24 diverse lenses to convergence (stop at 2 clean passes), verify every finding against real file:line, and report `[SEV][AREA] file:line — defect — fix`; a fix mode applies severity-wave fixes then re-verifies. Ported from apoorvjain25/production-audit.
 - **py-pro** — Expert Python engineering discipline for production-grade code - structure,
 - **rag-engineer** — Retrieval-Augmented Generation done RIGHT — hybrid search + reranking + real eval,
 - **research-expert** — Deep research METHODOLOGY (decompose → multi-source → triangulate → adversarially

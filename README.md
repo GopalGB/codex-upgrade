@@ -1,9 +1,13 @@
 # Codex Upgrade — a portable, no-MCP power kit for OpenAI Codex CLI
 
-Turn a plain Codex CLI into an expert dev / ML / data agent **anywhere — including
-a locked-down office** where you cannot attach MCP servers or install things
-freely. Clone this repo, run one command, and Codex "absorbs" a curated set of
-expert **skills**, slash-command **prompts**, and an operating-law **AGENTS.md**.
+Turn a plain Codex CLI into an expert **office + engineering agent — built for a
+locked-down office** where you cannot attach MCP servers, install packages freely, or
+run anything as admin. Clone (or copy) this repo, run one command, and Codex "absorbs"
+a curated set of expert **skills** — Excel · PowerPoint · VBA · Power BI / Automate / Apps
+· Copilot Studio · M365 + Graph · business analytics, plus software / ML / AI engineering,
+agent-building, and an exhaustive code **audit** — as slash-command **prompts** and an
+operating-law **AGENTS.md**. Curated for office work: personal packs (résumé/interview
+prep) were pruned so what installs is what you actually use at work.
 
 Everything here is **100% file-based**: skills + prompts + plain Python scripts.
 **Zero MCP required.** Tools self-install their Python deps into an isolated venv,
@@ -41,7 +45,7 @@ failing silently.
 
 <sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
-### Skill library — 363 deep sub-skills (v3.6)
+### Skill library — 363 deep sub-skills (v3.6.1)
 On top of the 20 core experts, a namespaced library covers your work in depth
 (**383 skills total**). Codex auto-triggers them by description — no command needed.
 Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).

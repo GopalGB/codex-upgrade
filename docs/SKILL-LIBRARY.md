@@ -1,9 +1,9 @@
-# Codex Upgrade — Skill Library Index (390 skills)
+# Codex Upgrade — Skill Library Index (383 skills)
 
 > Codex auto-triggers by description; no command needed. Disable a pack: `rm -rf ~/.codex/skills/<prefix>-*`.
 
 
-## Core experts (core-*) — 18
+## Core experts (core-*) — 20
 
 - **agent-builder** — Build PRODUCTION agentic systems — design for the failure path, eval + observe from
 - **claude-review** — Get an independent Claude Opus 4.8 code review of the current git diff — the
@@ -14,6 +14,8 @@
 - **ml-engineer** — Deep, end-to-end ML / AI engineering — data → train/fine-tune → eval → quantize →
 - **patent-scout** — Search US patents and do prior-art sweeps without MCP. Primary source is the
 - **pdf-extract** — Extract text, tables, and LLM-ready markdown from PDF files without MCP. Use
+- **ponytail** — Minimalism / "the best code is the code you never wrote": the YAGNI→reuse→stdlib→native→existing-dep→one-line decision ladder — ship the shortest correct diff, no speculative abstractions. Use on every build/edit.
+- **production-audit** — Exhaustive production-readiness audit: sweep 24 diverse lenses to convergence (stop at 2 clean passes), verify every finding against real file:line, and report `[SEV][AREA] file:line — defect — fix`; a fix mode applies severity-wave fixes then re-verifies. Ported from apoorvjain25/production-audit.
 - **py-pro** — Expert Python engineering discipline for production-grade code - structure,
 - **rag-engineer** — Retrieval-Augmented Generation done RIGHT — hybrid search + reranking + real eval,
 - **research-expert** — Deep research METHODOLOGY (decompose → multi-source → triangulate → adversarially
@@ -39,34 +41,24 @@
 - **gsd-spec** — Clarify WHAT a phase delivers, with ambiguity scoring, into .planning/SPEC.md — the contract before planning. Use before plan-phase on non-trivial work.
 - **gsd-verify** — Goal-backward verification + conversational UAT — re-read the SPEC criteria, run the FULL suite, confirm each criterion actually passes, get Claude Opus review. Use before ship.
 
-## Algorithms & DSA (algo-*) — 26
+## Agent discipline (craft-*) — 16
 
-- **algo-arrays-strings** — Manipulate arrays and strings in-place — reversal, rotation, dedup, in-place writes — when memory matters or interviewers forbid extra space.
-- **algo-backtracking** — Backtracking for combinatorial generation and constraint search — permutations, combinations, subsets, N-Queens, Sudoku, word-search — with pruning.
-- **algo-binary-search** — Classic binary search on sorted data plus lower/upper-bound variants — find element, first/last occurrence, insertion point — in O(log n).
-- **algo-binary-search-on-answer** — Binary-search the answer space when checking feasibility is easy but computing the optimum is hard — min capacity, Koko bananas, split-array, allocation.
-- **algo-binary-search-trees** — Binary search trees — ordered insert/search/delete, validate-BST, inorder-successor, kth-smallest, range queries — and why balance matters.
-- **algo-bit-manipulation** — Bitwise tricks — masks, single-number XOR, count-bits, power-of-two checks, subset enumeration, lowest-set-bit — for O(1) state and tight inner loops.
-- **algo-complexity-analysis** — Big-O / time-space complexity analysis — amortized, recurrences, dominant terms, common traps — to predict scalability and pass complexity interview questions.
-- **algo-divide-and-conquer** — Divide-and-conquer — merge sort, quickselect, binary-search variants, max-subarray, count-inversions, the Master Theorem — split, solve, combine.
-- **algo-dynamic-programming** — Dynamic programming — 1D/2D states, knapsack, LIS, LCS/edit-distance, grid paths, coin-change — via state definition, recurrence, memo vs tabulation.
-- **algo-graph-bfs-dfs** — Graph traversal — BFS for shortest path in unweighted graphs, DFS for connectivity/components/cycle detection — on adjacency lists or grids.
-- **algo-greedy** — Greedy algorithms — interval scheduling, jump-game, gas-station, Huffman, fractional knapsack — and proving the local-optimal choice is globally optimal.
-- **algo-hashing-hashmaps** — Trade space for O(1) average lookup with hashmaps/sets — complement search, frequency counting, grouping, dedup, caching seen state.
-- **algo-heaps-priority-queue** — Binary heaps / priority queues — top-K, k-way merge, running median, Dijkstra's PQ, scheduling — with O(log n) push/pop and O(1) peek.
-- **algo-linked-lists** — Linked-list operations with pointer surgery — reverse, detect/remove cycle, merge, find middle, reorder — using dummy nodes and fast/slow pointers.
-- **algo-minimum-spanning-tree** — Minimum spanning tree — Kruskal (edge-sort + DSU) and Prim (grow via PQ) — for least-cost connection: networks, clustering, road/cable layout.
-- **algo-prefix-sums** — Prefix-sum / difference arrays for O(1) range queries and O(1) range updates — subarray-sum-equals-K, 2D submatrix sums, interval bumps.
-- **algo-recursion-fundamentals** — Reason about recursion correctly — base case, recursive case, the call stack, and recursion-to-iteration — to write provably-terminating recursive solutions.
-- **algo-shortest-paths** — Weighted shortest-path algorithms — Dijkstra, Bellman-Ford, Floyd-Warshall, 0-1 BFS — choosing by negative edges, single vs all-pairs, and edge weights.
-- **algo-sliding-window** — Sliding-window for contiguous subarray/substring problems — longest/shortest/at-most-K, fixed or variable size — in a single O(n) pass.
-- **algo-sorting-algorithms** — Sorting algorithms and when to use which — quicksort, merge sort, heapsort, Timsort, counting/radix sort — by stability, space, and data shape.
-- **algo-stacks-queues-monotonic** — Stacks, queues, and the monotonic-stack/deque pattern — valid-parens, next-greater-element, sliding-window-max, histogram, span — in amortized O(n).
-- **algo-topological-sort** — Topological ordering of a DAG — task/build scheduling, course prerequisites, dependency resolution, cycle detection — via Kahn's BFS or DFS post-order.
-- **algo-trees-traversals** — Binary-tree traversals and tree DFS/BFS — preorder/inorder/postorder, level-order, height/diameter, LCA, path sums — recursive and iterative.
-- **algo-tries** — Trie (prefix tree) for string sets — autocomplete, prefix search, word-dictionary with wildcards, longest-common-prefix, XOR-maximization via bit-tries.
-- **algo-two-pointers** — Two-pointer technique on sorted arrays/strings — pair-sum, dedup, partition, palindrome, merge — to drop O(n²) brute force to O(n).
-- **algo-union-find-dsu** — Union-Find / Disjoint Set Union for dynamic connectivity — connected components, Kruskal's MST, cycle detection in undirected graphs, account-merge, redundant-connection.
+- **craft-tdd-red-green** — Drive code test-first with RED→GREEN→REFACTOR — failing test first, watch it fail for the right reason, minimum code to pass, refactor under green; tests written after the fact are grounds to redo.
+- **craft-small-surgical-diffs** — Make the smallest on-topic change — no drive-by reformatting, renames, or unrelated refactors; keep diffs reviewable and bisectable, refactors in their own commit.
+- **craft-verify-before-done** — Never claim done or 'should work' without running it — build, test, exercise the real path end-to-end, read the output; name whatever is left unverified.
+- **craft-no-hallucinated-apis** — Never invent functions, flags, config keys, or packages — verify every symbol exists in the installed version before using it; the #1 LLM coding failure.
+- **craft-read-before-edit** — Read the file and its neighbors before editing — match existing naming, imports, error style, and tests so the change is indistinguishable from the surrounding code.
+- **craft-fail-loud-no-swallow** — Never swallow errors — no bare except / empty catch; handle, re-raise, or log-and-fail; validate at the boundary, catch narrowly, preserve the cause.
+- **craft-git-safety-guardrails** — Safe git hygiene — no force-push to shared branches, no committed secrets, branch off main, review the diff before staging, atomic Conventional Commits.
+- **craft-handoff-context-notes** — Leave a precise handoff note before stopping — Done / Next / Broken / how-to-run / decisions — so the next session resumes without archaeology.
+- **craft-domain-modeling-types** — Model the domain in types so illegal states are unrepresentable — parse don't validate, enums/sum-types over stringly-typed, domain newtypes over primitives.
+- **craft-pushback-not-sycophancy** — Disagree when the user is wrong or ambiguous — propose the better path with reasons, no flattery; separate the goal (theirs) from the means (your judgment).
+- **craft-research-before-implement** — Read the real docs/source for the installed version before coding against an unfamiliar API — don't pattern-match from stale memory; understand then implement.
+- **craft-no-premature-abstraction** — Inline duplication until the rule of three — no framework, generic helper, or config for one caller; a wrong abstraction costs more than the duplication it removes.
+- **craft-self-review-diff** — Read your own diff as a hostile reviewer before declaring done — catch debug prints, commented code, TODOs, secrets, off-by-ones, untested branches; then re-verify.
+- **craft-vertical-slice-delivery** — Build thin end-to-end slices over big-bang horizontal layers — keep the build green and main runnable at each slice; integrate continuously, slice tasks vertically.
+- **craft-comment-why-not-what** — Comment the why (intent, tradeoffs, gotchas), never narrate the what the code already states; match the file's comment density and keep comments in sync.
+- **craft-delete-dead-code** — Delete dead code as you go — unreachable branches, unused imports/deps, commented-out blocks — and trust git history instead of 'just in case'; net-negative diffs win.
 
 ## Machine learning (ml-*) — 25
 
@@ -122,6 +114,27 @@
 - **ai-streaming-responses** — Stream LLM output token-by-token for low perceived latency: SSE handling, partial-JSON/tool-call streaming, backpressure, and clean cancellation — use for any interactive or long-output UI.
 - **ai-structured-output** — Force valid JSON/typed output via JSON Schema, constrained decoding, and Pydantic validation — use whenever an LLM output feeds code instead of a human.
 - **ai-vector-search** — Build and query a vector index for similarity search: ANN algorithms (HNSW/IVF), distance metrics, metadata filtering, and recall tuning — use to retrieve nearest neighbors at scale.
+
+## Building agentic software (agentic-*) — 18
+
+- **agentic-agent-vs-workflow** — Choose a deterministic workflow vs an autonomous agent — predictability/cost/testability vs flexibility; start simplest, add agency only when the steps can't be predicted.
+- **agentic-prompt-chaining** — Decompose into a fixed sequence of LLM calls with programmatic gates between steps; trade latency for per-step accuracy — the simplest reliable workflow.
+- **agentic-routing** — Classify the input and dispatch to a specialized prompt/model/handler; separation of concerns + cost tiering, with an explicit 'other/unsure' default.
+- **agentic-parallelization** — Run subtasks concurrently — sectioning (independent parts) or voting (same task N times, aggregate) — to cut wall-clock latency or raise confidence/coverage.
+- **agentic-orchestrator-workers** — A lead agent decomposes a task at runtime, dispatches to worker sub-agents in isolated contexts, and synthesizes — for open-ended work whose subtasks you can't predict.
+- **agentic-evaluator-optimizer** — Loop a generator and an evaluator — produce, critique against grounded criteria, refine until it passes — bounded by a max-iteration cap; use real checks over LLM-judge.
+- **agentic-subagent-design** — Design focused sub-agents: single responsibility, explicit input/output contract, isolated context, least-privilege tools, distilled structured returns.
+- **agentic-tool-design** — Design the agent-computer interface (ACI): clear names/types/descriptions, poka-yoke, structured actionable errors, right-sized outputs; test with agent-shaped inputs.
+- **agentic-skill-authoring** — Write effective skills/instructions: description as the trigger signal, progressive disclosure, one capability per skill, concrete imperative how-to.
+- **agentic-context-engineering** — Treat context as a finite, degrading budget: just-in-time retrieval over stuffing, compaction, external memory, sub-agent isolation; fight context rot.
+- **agentic-state-durability** — Make long runs durable: checkpoint to external storage, idempotent resumable steps, idempotency keys for side effects; test the kill-and-resume path.
+- **agentic-human-in-the-loop** — Gate consequential/irreversible actions behind approval, escalate on uncertainty, present a tight decision surface; pair with durable pause/resume.
+- **agentic-mcp-tools-integration** — Connect agents to tools/data via MCP (servers exposing tools/resources/prompts over stdio/HTTP); reuse existing servers, build custom for your own systems, treat as a security boundary.
+- **agentic-failure-recovery** — Resilient loops: retry+backoff on idempotent transients, fallback chains, error-reflection, bounded iterations/cost, fail loud into the trace.
+- **agentic-eval-and-tracing** — Evaluate agents on end-state + trajectory, trace runs as spans (calls/tools/tokens/latency), gate changes behind a CI regression eval.
+- **agentic-cost-budgeting** — Control cost/latency: per-role model routing, sub-agent token budgets, prompt-cache the stable prefix, trim outputs, cost-per-task as a first-class metric.
+- **agentic-permissions-least-privilege** — Scope agents to least-privilege tools, sandbox execution, isolate untrusted content (prompt-injection), confirm destructive actions, scoped short-lived creds.
+- **agentic-app-architecture** — Architect an agentic app end-to-end: core loop (context→act→verify), decoupled model/tool/state/orchestration layers, observability + eval-gate + guardrails from day one.
 
 ## Software eng + system design (sde-*) — 29
 
@@ -429,23 +442,3 @@
 - **prod-time-blocking** — Design a time-blocked calendar (task batching, theme days, day-template) so every hour has an assigned job instead of an open-ended to-do list
 - **prod-two-minute-rule** — Apply the 2-minute rule two ways-do-it-now for sub-2-min tasks (GTD) and the start-small habit version (Atomic Habits)-to crush small-task buildup and procrastination
 - **prod-weekly-review** — Run a structured weekly review (clear, current, creative) to keep your task system trusted, reconcile calendar vs reality, and plan the week ahead
-
-## Career & interview (career-*) — 17
-
-- **career-ats-resume-engineering** — Build an ATS-parseable, recruiter-skimmable engineer resume with quantified impact bullets — use when writing or rewriting a resume for online applications.
-- **career-behavioral-interview-star** — Answer behavioral questions with tight STAR stories that show ownership, conflict, and impact — use to prep the 'tell me about a time' round and culture/values loops.
-- **career-coding-interview-execution** — Run the live coding interview itself — clarify, communicate, test, debug under time pressure — use the day-of to convert problem-solving into a hire signal.
-- **career-coding-interview-patterns** — Master the ~15 algorithm patterns that cover most coding interviews, with recognition triggers and complexity — use when prepping LeetCode-style technical screens.
-- **career-engineer-portfolio-building** — Build a portfolio (GitHub + project READMEs + live demos) that proves engineering judgment, not tutorial-following — use when you need credible projects to back a resume.
-- **career-impact-bullet-quantification** — Turn vague duties into metric-driven accomplishment bullets even when you lack clean numbers — use when bullets read as task lists with no measurable outcome.
-- **career-interview-debrief-iteration** — Systematically debrief each interview, diagnose the failing funnel stage, and iterate prep — use to convert rejections into a faster path to offers.
-- **career-job-search-funnel-strategy** — Run a metrics-driven job search as a sales funnel (sourcing→apply→screen→onsite→offer) with conversion targets and channel mix — use when applications get no responses.
-- **career-linkedin-optimization** — Optimize a LinkedIn profile for recruiter search ranking and inbound, plus content for visibility — use when recruiters aren't finding you or your profile gets no inbound.
-- **career-ml-ai-interview-prep** — Prep the ML/AI interview tracks — ML fundamentals, coding, ML system design, and LLM/applied-AI rounds — use when targeting MLE, AI engineer, or research-engineer roles.
-- **career-offer-evaluation** — Evaluate and compare job offers across comp, growth, team, role, and risk with a weighted framework — use when deciding between offers or whether to accept.
-- **career-recruiter-cold-outreach** — Write cold messages to recruiters, hiring managers, and referrers that get replies — use to source referrals and warm intros instead of cold-applying.
-- **career-salary-negotiation** — Negotiate a software/ML offer across base, equity, bonus, and sign-on using leverage, anchoring, and competing offers — use when you have an offer in hand.
-- **career-strategic-networking** — Build a professional network that generates referrals and intel through give-first relationships, communities, and warm intros — use to escape cold-apply dependence.
-- **career-system-design-building-blocks** — Know the canonical distributed-systems components and when each applies (caches, queues, sharding, replication, CDN, consensus) — use to back design choices with depth.
-- **career-system-design-interview** — Structure a system-design interview with a repeatable method (requirements→estimation→API→data→architecture→scale→tradeoffs) — use for senior/staff loops.
-- **career-take-home-project-strategy** — Maximize a take-home assignment with scoping, tests, README, and production-mindset signals while time-boxing — use when given a take-home or work-sample.

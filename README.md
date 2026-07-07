@@ -1,9 +1,13 @@
 # Codex Upgrade — a portable, no-MCP power kit for OpenAI Codex CLI
 
-Turn a plain Codex CLI into an expert dev / ML / data agent **anywhere — including
-a locked-down office** where you cannot attach MCP servers or install things
-freely. Clone this repo, run one command, and Codex "absorbs" a curated set of
-expert **skills**, slash-command **prompts**, and an operating-law **AGENTS.md**.
+Turn a plain Codex CLI into an expert **office + engineering agent — built for a
+locked-down office** where you cannot attach MCP servers, install packages freely, or
+run anything as admin. Clone (or copy) this repo, run one command, and Codex "absorbs"
+a curated set of expert **skills** — Excel · PowerPoint · VBA · Power BI / Automate / Apps
+· Copilot Studio · M365 + Graph · business analytics, plus software / ML / AI engineering,
+agent-building, and an exhaustive code **audit** — as slash-command **prompts** and an
+operating-law **AGENTS.md**. Curated for office work: personal packs (résumé/interview
+prep) were pruned so what installs is what you actually use at work.
 
 Everything here is **100% file-based**: skills + prompts + plain Python scripts.
 **Zero MCP required.** Tools self-install their Python deps into an isolated venv,
@@ -34,27 +38,30 @@ failing silently.
 | `data-engineer` | Idempotent ELT, no-OOM (dbt/SQLMesh/DuckDB/Polars/dlt) | none |
 | `claude-review` | **Cross-review**: Claude Opus 4.8 reviews the git diff (the verify gate) | none |
 | `security-auditor` | Secret scan + SAST + dep-audit (gitleaks/semgrep/osv/pip-audit) | none* |
+| `production-audit` | **Exhaustive audit**: 24-lens converge-until-clean, every finding proven at file:line, + fix mode | none |
 | `toolbelt` | Prefer fast CLI tools (rg/jq/pandoc/duckdb + ast-grep/fd/yq) over scripts | none* |
 | `doc-forge` | DOCX + universal convert (pandoc) + OCR for scanned PDFs/patents | pandoc/ocrmypdf |
+| `ponytail` | **Minimalism**: write less code — the YAGNI→reuse→stdlib→native→one-line decision ladder | none |
 
 <sub>*orchestrates CLI tools; most are already on a typical dev box (the skill notes what to install).</sub>
 
-### Skill library — 372 deep sub-skills (v3.2)
-On top of the 18 core experts, a namespaced library covers your work in depth
-(**390 skills total**). Codex auto-triggers them by description — no command needed.
+### Skill library — 363 deep sub-skills (v3.6.1)
+On top of the 20 core experts, a namespaced library covers your work in depth
+(**383 skills total**). Codex auto-triggers them by description — no command needed.
 Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 
 | Pack | # | Covers |
 |---|---|---|
 | `gsd-*` | 12 | **GSD methodology**: new-project→spec→plan→execute→verify→ship + debug/map/progress ([docs/GSD.md](docs/GSD.md)) |
+| `craft-*` | 16 | **Agent discipline** (ponytail-style): TDD red-green, surgical diffs, verify-before-done, no-hallucinated-APIs, read-before-edit, fail-loud, git-safety, domain-modeling, self-review |
 | `pbi-*` | 23 | Power BI: DAX/CALCULATE, time-intelligence, Power Query M, modeling, RLS, performance |
 | `pa-*` | 20 | Power Automate: flows, triggers, expressions, error handling, RPA/desktop flows, ALM |
 | `copilot-*` | 15 | Copilot Studio: topics, entities, actions, generative answers, M365 declarative agents |
 | `papps-*` | 15 | Power Apps: Power Fx, galleries/forms, delegation, Dataverse, model-driven |
 | `m365-*` | 17 | M365 + Microsoft Graph: auth/scopes, SharePoint, Teams, Outlook, Office Scripts |
-| `algo-*` | 26 | DSA: two-pointers, sliding-window, binary-search, graphs, DP, greedy, tries, complexity |
 | `ml-*` | 25 | regression, trees, boosting, SVM, clustering, PCA, CV, tuning, metrics, time-series, SHAP |
 | `ai-*` | 24 | prompting, CoT, structured output, RAG patterns, fine-tune, evals, guardrails, multimodal, cost |
+| `agentic-*` | 18 | **Building agentic software**: agent-vs-workflow, prompt-chaining/routing/parallelization, orchestrator-workers, evaluator-optimizer, sub-agent + tool + skill design, context engineering, state durability, MCP, eval/tracing, least-privilege, app architecture |
 | `sde-*` | 29 | system design, scalability, caching, sharding, queues, SOLID, patterns, concurrency, CI/CD, interviews |
 | `pptx-*` | 20 | slide masters, themes, charts, SmartArt, morph, accessibility, export, PPT-VBA |
 | `xls-*` | 26 | XLOOKUP/dynamic arrays/LAMBDA, pivots, Power Query, Power Pivot/DAX, dashboards, xlsm |
@@ -63,7 +70,6 @@ Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 | `research-*` | 22 | systematic review/PRISMA, survey design, stats, regression, A/B + power, meta-analysis |
 | `ba-*` | 16 | dashboards, chart selection, SQL, cohort/funnel, forecasting, financial analysis, storytelling |
 | `prod-*` | 20 | GTD, Eisenhower, time-blocking, deep work, OKRs, prioritization, habits, inbox-zero |
-| `career-*` | 17 | resume/ATS, portfolio, coding + system-design + behavioral interviews, negotiation, outreach |
 
 Each carries real expert how-to (median ~1.4k chars: actual functions, formulas, methods,
 pitfalls), generated from verified catalogs. **Don't want a pack?** `rm -rf ~/.codex/skills/<prefix>-*`.
@@ -79,13 +85,18 @@ falls back to manual links + academic prior-art when absent — never fakes resu
 **Slash prompts** (in `codex-assets/prompts/`) — invoked as `/prompts:<name>` in
 Codex: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`, `/prompts:council`,
 `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`, `/prompts:verify`,
-`/prompts:swarm`.
+`/prompts:swarm`, `/prompts:audit`, `/prompts:setup`.
 
 **Swarm (multi-agent):** `/prompts:swarm` or the `swarm` skill fans one task across
 several expert lenses **in parallel** — each is an isolated `codex exec` worker
 (read-only, `--ephemeral`) — then synthesizes their findings. Portable (no MCP), uses
 plain `codex exec` rather than the flaky native `[agents]`. Keep lens lists tight —
 each lens is a full Codex session.
+
+**On-demand deep audit:** `/prompts:audit` (or the `production-audit` skill) sweeps the
+codebase through **24 lenses to convergence** (stop only after two clean passes), proves
+every finding against `file:line`, and — in `fix` mode — repairs in severity waves then
+re-verifies. For when you want *everything* that's wrong, not a reassuring one-pass summary.
 
 **⛔ Strict non-negotiable gates (v3.2):** GSD is **mandatory** on non-trivial work (not
 opt-in) and **Claude Opus 4.8 must review your code** (`claude-review`) before anything is
@@ -146,12 +157,32 @@ it enables Codex's experimental `codex_hooks`, drops a `UserPromptSubmit` hook t
 detects frustration signals (and writes an audit log + injects a forcing reminder),
 and a `SessionStart` ritual that reminds the model of the method every session.
 Experimental + unstable schema — opt-in only; the office-safe default never needs it.
-Verify the whole kit any time: `bash tests/smoke.sh` (16 checks, no network).
+Verify the whole kit any time: `bash tests/smoke.sh` (19 checks, no network).
 
-### Or let Codex absorb it for you
-From inside the repo, start `codex` and paste:
-> Install this Codex Upgrade kit: run `bash install.sh`, then read
-> `~/.codex/AGENTS.md` and run `/skills` to confirm the new skills are loaded.
+### Or let Codex wire it up for you (no admin — office-safe)
+**User-level only: no `sudo`, no system paths, no MCP.** Everything installs under your
+home (`~/.codex`). On a locked-down office box this just works — and if pip/network is
+blocked the tools print the one manual command instead of failing.
+
+From inside the repo, start `codex` and paste this prompt:
+
+> Add this Codex Upgrade kit to my Codex and wire it up — **user-level only, no admin/sudo,
+> office-safe**:
+> 1. Run `bash install.sh` from the repo root. It backs up my existing `~/.codex` first,
+>    validates every SKILL.md, then copies the skills + prompts + shared lib **under
+>    `~/.codex` only** (never `/usr`, `/etc`, `/opt`, and never a privileged installer).
+> 2. Read `~/.codex/AGENTS.md` so you pick up the operating law + GSD gates.
+> 3. Run `/skills` and `/prompts` and confirm the kit loaded — e.g. `production-audit`,
+>    `ponytail`, the `craft-*` and `agentic-*` packs, and `/prompts:audit`.
+> 4. If they don't show, restart the session (skills/prompts are re-scanned at startup),
+>    then re-check.
+> Constraint: if any step needs admin, network, or a system path, **STOP and tell me the
+> exact command** — never escalate, never run `sudo`.
+
+No GitHub on the office machine? Copy the repo folder over by drive/USB and paste the same
+prompt — nothing here phones home. To also merge the safe office `config.toml` profile
+(read-only/no-network defaults), tell it to run `bash install.sh --with-config`. Once the kit
+is installed, **`/prompts:setup`** re-runs this from inside Codex any time (to pull updates).
 
 ---
 

@@ -73,6 +73,18 @@ Per-project: run `/absorb` inside each work repo — Codex engages the right exp
 and writes a project `AGENTS.md`. Project-specific skills land in `./.agents/skills/`
 so they travel with that repo and never pollute the global set.
 
+### Install only the skills you need (Codex's ~2% skill budget)
+Codex only surfaces its skill list within **~2% of the context window (~8,000 chars)**, so
+installing all 383 skills makes it shorten/omit most from the auto-trigger list. For an
+office box, install a **focused subset** so the skills you rely on actually fire:
+```bash
+bash install.sh --only=xls,pptx,vba,pbi,pa,papps,copilot,m365,ba,production-audit   # office subset
+bash install.sh --exclude=ml,ai,sde,agentic,retail,research                          # or drop the heavy/eng packs
+```
+`--only`/`--exclude` take comma-separated pack prefixes (e.g. `xls`) or exact skill names
+(e.g. `production-audit`). install.sh warns when you exceed ~25 installed skills. You can
+also prune anytime: `rm -rf ~/.codex/skills/<prefix>-*`.
+
 ## 6. Data-handling guardrails on a work machine
 - The law layer blocks reading `.env`, keys, `~/.ssh`, credentials by default.
 - Treat all document contents (xlsx/pdf/pptx) as untrusted data.

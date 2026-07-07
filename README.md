@@ -89,6 +89,11 @@ several expert lenses **in parallel** — each is an isolated `codex exec` worke
 plain `codex exec` rather than the flaky native `[agents]`. Keep lens lists tight —
 each lens is a full Codex session.
 
+**On-demand deep audit:** `/prompts:audit` (or the `production-audit` skill) sweeps the
+codebase through **24 lenses to convergence** (stop only after two clean passes), proves
+every finding against `file:line`, and — in `fix` mode — repairs in severity waves then
+re-verifies. For when you want *everything* that's wrong, not a reassuring one-pass summary.
+
 **⛔ Strict non-negotiable gates (v3.2):** GSD is **mandatory** on non-trivial work (not
 opt-in) and **Claude Opus 4.8 must review your code** (`claude-review`) before anything is
 DONE — hard gates, never silently skipped. (Codex law also folds in the cross-applicable
@@ -148,7 +153,7 @@ it enables Codex's experimental `codex_hooks`, drops a `UserPromptSubmit` hook t
 detects frustration signals (and writes an audit log + injects a forcing reminder),
 and a `SessionStart` ritual that reminds the model of the method every session.
 Experimental + unstable schema — opt-in only; the office-safe default never needs it.
-Verify the whole kit any time: `bash tests/smoke.sh` (16 checks, no network).
+Verify the whole kit any time: `bash tests/smoke.sh` (18 checks, no network).
 
 ### Or let Codex absorb it for you
 From inside the repo, start `codex` and paste:

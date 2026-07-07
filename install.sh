@@ -7,6 +7,9 @@
 # Flags:
 #   --dry-run      show what would change, do nothing
 #   --link         symlink skills/prompts instead of copying (for development)
+#   --only=<list>  install ONLY these packs/skills (comma-sep prefixes or exact names);
+#                  keeps the list within Codex's ~2% / ~8000-char budget so skills trigger.
+#   --exclude=<list>  install everything EXCEPT these packs/skills (comma-sep).
 #   --with-config  also merge the safe "office" profile into ~/.codex/config.toml
 #   --with-hooks   install the OPTIONAL Codex hooks (hard-enforce the §F lessons loop).
 #                  Enables the experimental [features] codex_hooks flag. Home machines
@@ -22,16 +25,19 @@ CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
 TS="$(date +%Y%m%d-%H%M%S)"
 BACKUP="$CODEX_HOME/backups/$TS"
 
-DRY=0; LINK=0; WITH_CONFIG=0; WITH_HOOKS=0; AGENTS_DIR=0
+DRY=0; LINK=0; WITH_CONFIG=0; WITH_HOOKS=0; AGENTS_DIR=0; ONLY=""; EXCLUDE=""
 for arg in "$@"; do
   case "$arg" in
     --dry-run) DRY=1 ;;
     --link) LINK=1 ;;
+    --only=*) ONLY="${arg#*=}" ;;
+    --exclude=*) EXCLUDE="${arg#*=}" ;;
+    --only|--exclude) echo "use $arg=<comma-list>, e.g. --only=xls,pptx,production-audit"; exit 2 ;;
     --with-config) WITH_CONFIG=1 ;;
     --with-hooks) WITH_HOOKS=1 ;;
     --user-agents-dir) AGENTS_DIR=1 ;;
     --help|-h)
-      sed -n '2,16p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
+      sed -n '2,19p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) echo "unknown flag: $arg (try --help)"; exit 2 ;;
   esac
 done
@@ -47,6 +53,24 @@ fi
 say()  { printf '%s\n' "$*"; }
 run()  { if [ "$DRY" = 1 ]; then say "  [dry-run] $*"; else eval "$*"; fi; }
 line() { printf '%s\n' "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"; }
+
+# --- skill selection (--only / --exclude) — keep the list within Codex's ~2% budget ---
+_skill_prefix() { case "$1" in *-*) printf '%s' "${1%%-*}";; *) printf '%s' "$1";; esac; }
+_in_list() {  # $1 = skill name, $2 = comma list of prefixes and/or exact names
+  local n="$1" pfx tok; pfx="$(_skill_prefix "$n")"
+  local IFS=','
+  for tok in $2; do
+    tok="${tok// /}"; [ -z "$tok" ] && continue
+    [ "$tok" = "$n" ] && return 0
+    [ "$tok" = "$pfx" ] && return 0
+  done
+  return 1
+}
+_want_skill() {  # honor --only (allowlist), then --exclude (denylist)
+  if [ -n "$ONLY" ] && ! _in_list "$1" "$ONLY"; then return 1; fi
+  if [ -n "$EXCLUDE" ] && _in_list "$1" "$EXCLUDE"; then return 1; fi
+  return 0
+}
 
 line
 say " CODEX UPGRADE — install $( [ "$DRY" = 1 ] && echo '(DRY RUN)' )"
@@ -94,10 +118,22 @@ SKILLS=0
 for d in "$ASSETS"/skills/*/; do
   name="$(basename "$d")"
   [ "$name" = "_lib" ] && continue
+  _want_skill "$name" || continue
   install_dir "$d" "$SKILLS_ROOT/$name"
   SKILLS=$((SKILLS+1))
 done
 say "✓ skills installed: $SKILLS -> $SKILLS_ROOT"
+[ -n "$ONLY" ] && say "  (--only=$ONLY)"; [ -n "$EXCLUDE" ] && say "  (--exclude=$EXCLUDE)"
+# Codex shows its skill list within a ~2% context budget (~8000 chars); above ~25 installed
+# skills it shortens descriptions and OMITS some from the auto-trigger list (they still run
+# when invoked by path). Nudge toward a focused install so skills reliably trigger.
+if [ "$DRY" != 1 ] && [ "$SKILLS" -gt 25 ]; then
+  say "⚠ $SKILLS skills installed — Codex surfaces its skill list within a ~2% (~8000-char)"
+  say "  budget, so above ~25 it shortens/omits some from auto-triggering. Install only what"
+  say "  you need for reliable triggering, e.g.:"
+  say "    bash install.sh --only=xls,pptx,pbi,production-audit,ponytail"
+  say "  or --exclude=ml,ai,sde,retail,research  ·  or prune later: rm -rf ~/.codex/skills/<prefix>-*"
+fi
 
 # --- 3. prompts ---------------------------------------------------------------
 PROMPTS=0

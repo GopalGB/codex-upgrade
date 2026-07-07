@@ -1,9 +1,15 @@
-codex-upgrade 3.6.1
+codex-upgrade 3.7.0
 built 2026-06-29
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP, USER-LEVEL (no admin), sandbox-safe
 skills: 383 (20 core + 363 library) · prompts: 11 · law v2.8
 changelog:
+  3.7.0 — Skill-budget fix. Codex shows its skill list within only ~2% of context
+          (~8000 chars), so installing all 383 makes it shorten/omit most from the
+          auto-trigger list ("only ~2% of skills used"). install.sh gains --only=<list>
+          and --exclude=<list> (comma-sep pack prefixes or exact names) to install a
+          focused subset that fits the budget, plus a post-install warning above ~25
+          skills. README documents the budget + selective install.
   3.6.1 — +/prompts:setup — one-command install & wire-up of the kit from inside the
           repo (user-level only, no admin/sudo, office-safe; runs install.sh, loads
           AGENTS.md, verifies skills+prompts). README gains a paste-in wire-up prompt.

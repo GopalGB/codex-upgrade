@@ -74,6 +74,19 @@ Full index: [`docs/SKILL-LIBRARY.md`](docs/SKILL-LIBRARY.md).
 Each carries real expert how-to (median ~1.4k chars: actual functions, formulas, methods,
 pitfalls), generated from verified catalogs. **Don't want a pack?** `rm -rf ~/.codex/skills/<prefix>-*`.
 
+> ### ⚠ Skill budget — install a focused subset (important)
+> Codex shows its skill list within a **~2% context budget (~8,000 chars)**. With all 383
+> skills installed it shortens descriptions and **omits most of them from the auto-trigger
+> list** (they still run when invoked by path, but won't fire on their own) — this is the
+> "only ~2% of skills get used" effect. **Install only what you need** so your skills
+> reliably trigger (~20–25 fit the budget):
+> ```bash
+> bash install.sh --only=xls,pptx,pbi,production-audit,ponytail   # comma-sep pack prefixes or exact names
+> bash install.sh --exclude=ml,ai,sde,agentic,retail,research     # everything except these
+> ```
+> Or prune after installing: `rm -rf ~/.codex/skills/<prefix>-*`. Per-project, `/prompts:absorb`
+> scopes the right experts into that repo's `./.agents/skills/` instead of the global set.
+
 Skills marked **deep** are *repo-grounded*: each one's `SKILL.md` carries a verified
 "absorb these repos" list (current best-in-class, with maintained/stale flags) + the
 expert-vs-generic gaps — not generic advice.

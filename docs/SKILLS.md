@@ -38,7 +38,7 @@ expert-vs-generic gaps — researched, not guessed. Re-verify repo currency peri
   `python3 ~/.codex/skills/<skill>/bin/<script>.py ...`.
 - **Prompts** are explicit: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`,
   `/prompts:council`, `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`,
-  `/prompts:verify`, `/prompts:swarm`, `/prompts:audit`.
+  `/prompts:verify`, `/prompts:swarm`, `/prompts:audit`, `/prompts:setup`.
 - After installing or editing skills/prompts, **restart Codex** (re-scan happens at
   session start only).
 

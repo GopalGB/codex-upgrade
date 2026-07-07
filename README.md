@@ -81,7 +81,7 @@ falls back to manual links + academic prior-art when absent — never fakes resu
 **Slash prompts** (in `codex-assets/prompts/`) — invoked as `/prompts:<name>` in
 Codex: `/prompts:absorb`, `/prompts:oracle`, `/prompts:plan`, `/prompts:council`,
 `/prompts:new-skill`, `/prompts:prd`, `/prompts:lesson`, `/prompts:verify`,
-`/prompts:swarm`, `/prompts:audit`.
+`/prompts:swarm`, `/prompts:audit`, `/prompts:setup`.
 
 **Swarm (multi-agent):** `/prompts:swarm` or the `swarm` skill fans one task across
 several expert lenses **in parallel** — each is an isolated `codex exec` worker
@@ -153,7 +153,7 @@ it enables Codex's experimental `codex_hooks`, drops a `UserPromptSubmit` hook t
 detects frustration signals (and writes an audit log + injects a forcing reminder),
 and a `SessionStart` ritual that reminds the model of the method every session.
 Experimental + unstable schema — opt-in only; the office-safe default never needs it.
-Verify the whole kit any time: `bash tests/smoke.sh` (18 checks, no network).
+Verify the whole kit any time: `bash tests/smoke.sh` (19 checks, no network).
 
 ### Or let Codex wire it up for you (no admin — office-safe)
 **User-level only: no `sudo`, no system paths, no MCP.** Everything installs under your
@@ -177,7 +177,8 @@ From inside the repo, start `codex` and paste this prompt:
 
 No GitHub on the office machine? Copy the repo folder over by drive/USB and paste the same
 prompt — nothing here phones home. To also merge the safe office `config.toml` profile
-(read-only/no-network defaults), tell it to run `bash install.sh --with-config`.
+(read-only/no-network defaults), tell it to run `bash install.sh --with-config`. Once the kit
+is installed, **`/prompts:setup`** re-runs this from inside Codex any time (to pull updates).
 
 ---
 

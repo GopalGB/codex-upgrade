@@ -1,9 +1,13 @@
-codex-upgrade 3.6.0
+codex-upgrade 3.6.1
 built 2026-06-29
 target: OpenAI Codex CLI >= 0.121 (homebrew/npm)
 mode: portable, file-based, zero-MCP, USER-LEVEL (no admin), sandbox-safe
-skills: 383 (20 core + 363 library) · prompts: 10 · law v2.8
+skills: 383 (20 core + 363 library) · prompts: 11 · law v2.8
 changelog:
+  3.6.1 — +/prompts:setup — one-command install & wire-up of the kit from inside the
+          repo (user-level only, no admin/sudo, office-safe; runs install.sh, loads
+          AGENTS.md, verifies skills+prompts). README gains a paste-in wire-up prompt.
+          (9 → 11 prompts across v3.6.x; smoke now 19 checks.)
   3.6.0 — +production-audit core skill (ported from apoorvjain25/production-audit):
           exhaustive 24-lens production-readiness audit, converge-until-clean, every
           finding verified against file:line, with a fix mode (severity waves + re-verify).

@@ -155,10 +155,29 @@ and a `SessionStart` ritual that reminds the model of the method every session.
 Experimental + unstable schema — opt-in only; the office-safe default never needs it.
 Verify the whole kit any time: `bash tests/smoke.sh` (18 checks, no network).
 
-### Or let Codex absorb it for you
-From inside the repo, start `codex` and paste:
-> Install this Codex Upgrade kit: run `bash install.sh`, then read
-> `~/.codex/AGENTS.md` and run `/skills` to confirm the new skills are loaded.
+### Or let Codex wire it up for you (no admin — office-safe)
+**User-level only: no `sudo`, no system paths, no MCP.** Everything installs under your
+home (`~/.codex`). On a locked-down office box this just works — and if pip/network is
+blocked the tools print the one manual command instead of failing.
+
+From inside the repo, start `codex` and paste this prompt:
+
+> Add this Codex Upgrade kit to my Codex and wire it up — **user-level only, no admin/sudo,
+> office-safe**:
+> 1. Run `bash install.sh` from the repo root. It backs up my existing `~/.codex` first,
+>    validates every SKILL.md, then copies the skills + prompts + shared lib **under
+>    `~/.codex` only** (never `/usr`, `/etc`, `/opt`, and never a privileged installer).
+> 2. Read `~/.codex/AGENTS.md` so you pick up the operating law + GSD gates.
+> 3. Run `/skills` and `/prompts` and confirm the kit loaded — e.g. `production-audit`,
+>    `ponytail`, the `craft-*` and `agentic-*` packs, and `/prompts:audit`.
+> 4. If they don't show, restart the session (skills/prompts are re-scanned at startup),
+>    then re-check.
+> Constraint: if any step needs admin, network, or a system path, **STOP and tell me the
+> exact command** — never escalate, never run `sudo`.
+
+No GitHub on the office machine? Copy the repo folder over by drive/USB and paste the same
+prompt — nothing here phones home. To also merge the safe office `config.toml` profile
+(read-only/no-network defaults), tell it to run `bash install.sh --with-config`.
 
 ---
 
